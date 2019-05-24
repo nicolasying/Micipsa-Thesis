@@ -1,0 +1,33 @@
+\chapter{Supplementary Methods} % Main appendix title
+\label{app:suppmethods}
+
+\section{fMRI Stimuli Preparation}
+\subsection{Stimuli}
+\subsection{Natural Story Stimuli}
+\subsection{Story Transcription and Preprocessing}
+[TODO: add lemmatisation]
+\subsection{Behavior Control}
+
+\section{fMRI Acquisition \& Preprocessing}
+\label{appsec:fmriacquisition} % For referencing this appendix elsewhere, use \ref{AppendixA}
+\subsection{Subjects}
+\subsection{fMRI Data Collection}
+\label{appsubsec:fmridata}
+[TODO, block length, image number]
+\subsection{fMRI Data Preprocessing}
+
+\section{Regression Configuration}
+\subsection{Regression Parameters}
+\label{appsubsec:regressionparameters}
+[TODO: alpha, dimension set]
+
+\section{Supplementary Analysis}
+\subsection{Non-nested Model Comparison} 
+\label{appsubsec:nonnestedcompmeth}
+Following the original pipeline proposed in \cite{merkleTestingNonnestedStructural2016}, non-nested model comparison should first test for non-equivalence, then for distinguishability, then compare model performance. 
+
+The particular case for \code{SIM} and \code{ASN} model comparison partially validate the non-equivalence, since the regressor bases are constructed by linear de-correlation, of which the objective is to maximize the found co-linearity between \code{SIM} and \code{MIX} spaces, thus minimize that between \code{SIM} and \code{ASN}.
+
+For the distinguishability, we proceed by using the constructed regressors. We try to test the distinguishability in this particular sample of two semantic representation spaces (against the fMRI stimuli's text data, with application of a convolution filter), by performing linear regressions between the two design matrices (as a collection of regressors). 
+
+To simplify the conceptual construction, we proceed similarly with fMRI encoding: from the 9 design matrices of one semantic space, we iteratively pick out one as validation data, the residual being training data. We use training data to construct a GLM, with the target data of the training session design matrices of the other semantic space. Then we test the generalization performance of the predicted model on the validation data. 
