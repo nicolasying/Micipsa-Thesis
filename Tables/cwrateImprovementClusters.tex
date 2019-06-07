@@ -1,0 +1,24 @@
+\begin{table}
+    \small
+    \centering
+    \begin{ThreePartTable}
+    \begin{tabularx}{\textwidth}{l l p{1.5cm} *{3}{r} *{2}{P{1.2cm}}P{1.4cm}}
+    \mc{6}{l}{\tabhead{\code{CWRATE} Best Improved Voxel Clusters}} \\
+    \toprule
+    \tabhead{Position} & \tabhead{BA} & \tabhead{Functional Label} & \tabhead{x} & \tabhead{y} & \tabhead{z} & \tabhead{\# Voxel} & \(\Delta\)\code{r2} \tabhead{Peak} & \(-\log_{10}\)\tabhead{ p-value} \\
+    \toprule
+    \mc{7}{l}{\tabhead{Top 2\%}}  &  >.0067 & >3.66   \\
+    \midrule
+    Temporal Pole Mid L & 38 & - & -53 & 11 & -33 & 22 & .0118 & 4.18 \\
+Temporal Inf L & 37 & Fusiform & -47 & -43 & -24 & 90 & .0114 &  4.18\\
+Rectus L & 11 & - & -5 & 46 & -26 & 16 & .0110 & 4.00 \\
+Cerebelum Crus2 R & 37 & Fusiform & 45 & -69 & -38 & 89 & .0130 & 4.35\\
+\bottomrule
+    \end{tabularx}
+    % \begin{tablenotes}
+    % \footnotesize
+    % \item[1] A cosine distance near 0 indicates a greater similarity.
+% \end{tablenotes}  
+\end{ThreePartTable}
+\caption[\code{CWRATE} Voxel Improvement Clusters]{The most severe voxel score selection of \code{RMS} leads to left primary cortex (BA41) activation. Also well modeled voxels are distributed in more extensive areas of bilateral BA41 and right BA23 and BA10. With the addition of \code{CWRATE} features, voxel performances are systematically improved. With \code{CWRATE}, no other clusters appear in the thresholded voxel set. Left BA41 has a higher concentration of best modeled voxels, while right BA41 and right mid cingulum degrade in voxel score ranking. Right BA10 also improves in ranking. \label{tab:cwrateImprovementClusters}}
+\end{table}

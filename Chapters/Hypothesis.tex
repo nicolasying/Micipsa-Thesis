@@ -1,39 +1,46 @@
 \chapter{Hypotheses} % Main chapter title
-
 \label{chap:hypotheses} % For referencing the chapter elsewhere, use \ref{Chapter1} 
+
+We relate \citeauthor{desaussureCoursLinguistiqueGenerale1969} and \citeauthor{jakobsonFundamentalsLanguage1963}'s twofold structuralism to neuro-psycholinguistic theories on semantic processing. The paradigmatic axis is associated with semantic \similarity relations, and syntagmatic axis with semantic control or episodic-event based semantic information comparisons, thus \association relations. Two parallel (not necessarily separate) systems handle respectively metaphorical and associational retrieval and access of words in linguistic tasks.
 
 \section{Reconciliation of Multiple Theories Exhibiting the Twofold Character of Natural Languages}
 
-In continuity with \cite{jakobsonFundamentalsLanguage1963}'s syntagmatic and paradigmatic axes and multiple theories on the role of cortices which are not traditionally defined as language areas, we focus on dissecting a central semantic locus, which acts as the binder, gateway or hub in different theories' nomination, apart from other peripheral semantic components. With the key question on finding the semantic information encoded by various cortical departments engaged in semantic processing, we propose a possible construction of the semantic hub based on the following arguments.
+In continuity with \textcite{jakobsonFundamentalsLanguage1963}'s syntagmatic and paradigmatic axes and multiple theories on the role of cortices which are not traditionally defined as language areas, we focus on dissecting a central semantic locus, which acts as the binder, gateway or hub in different theories' nomination, apart from other peripheral semantic components. 
 
-\subsection{Definition of Semantic Similarity and Semantic Hub}
-
+\subsection{Semantic \emph{Similarity} and Semantic Hub} 
 \label{subsection:hypsemantichub}
 
-[Checklist: cross-modal/amodal, hierarchical, ]
-If a semantic hub exists, as argued by \cite{pattersonWhereYouKnow2007, ralphNeuralComputationalBases2017} [TODO, many other references], the semantic hub is more aligned with Jakobson's paradigmatic axis. 
+Semantic hub is the locus/loci where the ontological semantic information of all words can be accessed. Such a particular ontology encodes the human understanding of concepts free of the dominant influence of modality-specific semantics. The plausibility of such a hub is motivated by contexture-deficients' quasimetaphoric wordings and selection-deficients' uncontextualizability (Section \ref{sec:IntroSyntagandParaAxies}). \textcite{pattersonWhereYouKnow2007} also summarized \emph{semantic dementia} (SD) symptoms including concept retrieval and categorization difficulties. 
 
-Additionally, pathological evidences from \cite{pattersonWhereYouKnow2007} suggest that \emph{semantic similarity} implements a hierarchical structure: \emph{herpes simplex virus encephalitis} (HSVE) patients compared with \emph{semantic demantia} (SD) patient show an intact performance at basic semantic levels (such as dog, knife) but not at subordinate level (for example poodle or bread knife). [TODO More evidence needed]
+Evidences from SD studies indicate three principle factors in semantic hub organization: familiarity, typicality and specificity. Familiarity is constructed with episodic events (thus out of scope of this project). Typicality can be encoded in the semantic ontology since untypical concepts usually require more information (e.g. \emph{whale} is conceptually very similar to other marine fishes, thus it needs to be marked as an exception in the semantic system since it is a mammal). Specificity can be modeled by a hierarchical structure, where the access to a word is an iterated traverse in a semantic tree. Hierarchical structures also allows to cope with a large lexicon inventory. Such a hypothetical construction can reproduce the paradigmatic axis, since semantic hub implementations should be able to group and cluster animal names such as cat, tiger, dinosaur together locally, location names such as museum, zoo, schools and color names such as magenta, grey, yellow.
 
-We assume the amodality and potential hierarchy of semantic similarity is well conserved in ontological semantic networks introduced in section \ref{subsection:symbolicembedding}. Furthermore, WordNet-like networks explicit various semantic relationships, some of which are considered as the backbone structure of similarity hierarchy. We will approximate a pure similarity space, using only similarity-related semantic relations in WordNet. 
+The internal organization of word-meanings in the semantic hub are henceforth named \similarity. It has a more global view towards all word meanings, whereas paradigmatic relations are a local similarity manifestation. 
 
-\subsection{Definition of Semantic Association}  
-[TODO definition ? alternative ]
-[Checklist: modal-specific, syntax-based proximity, ]
-By pathological studies, the semantic hub's information structure (which we name henceforth \emph{semantic similarity}) should be able to attribute to metaphorical word-pairs (such as \emph{spyglass}/\emph{microscope}). 
+For computational implementation of \similarity, we assume the amodality and potential hierarchy of semantic \similarity is well conserved in ontological semantic networks introduced in Section \ref{subsection:symbolicembedding}. WordNet-like networks hand-code its semantic units, introducing thus a familiarity bias. Furthermore, they explicit various semantic relationships: hypernymy and hyponymy are considered as the backbone structure of similarity hierarchy, synonymy (formed by \emph{synsets}) pushes similar words closer\dots
 
-\subsection{Hypothetical Structure of Twofold Characters in Statistical Distributional Representations}
+\subsection{Semantic \emph{Association}}
+
+We consider \association as complementary to \similarity in semantic memory. It includes thus syntagmatic relations, modality-specific proximities and episodic associations. Extended syntagmatic relations include collocations (\emph{pencil} and \emph{write}), meronymy/holonymy (\emph{ceil} and \emph{house}), entailment/causality (\emph{sunset} and \emph{milkyway}). Modality-specific proximities include spatial proximities (\emph{bridge} and \emph{river}), visual similarity (Paris metro logo and McDonald's), rhymes (\emph{rhyme} and \emph{lime})\dots
+
+Domain-specific information can also be accounted such as \emph{tools} recruit sensory-motor functions, \emph{music instruments} require auditory functions, and \emph{human faces} calls for affectual and social departments.
+
+\emph{Association} is vast. In this project we model the \association axis by exploiting all available information from statistical distributed representations (SDR), in which syntagmatic relations, common episodic associations (manifested in the SDR source corpus) are present.
+
+\subsection{Approximative Structure of Twofold Characters in Statistical Distributional Representations}
 
 \label{subsection:hyplinearsemantics}
+As SDR is a mixture of \similarity and \association information, we approximate this mixture by a linear additive structure of two components. Despite its simplicity, linear structuralism is often adopted in semantic modeling (e.g. Continuous-Bag-of-Words which is proposed in \textcite{mikolovEfficientEstimationWord2013}), and it achieves adequate performance. 
 
- 
-
-We furthered the argument of the mixture of semantic association and semantic information in statistical distributional representation in section \ref{subsection:statisticalembedding} on assuming a linear additive structure of the two components. Linear structuralism is often adopted in semantic modeling [TODO ref, eg. CBOW of mikolov]. It achieves adequate performance despite its potential inexactitude. 
-
-Under this assumption, we can obtain a semantic association representation space by subtracting similarity representations from a mixed representation space.
+With this approximation, we can obtain a semantic \association representation space by subtracting \similarity representations from a mixed representation space. Once with the \similarity component removed, the embedding should rank associates above the residual synonymies.
 
 \section{Targeted Semantic Hub Locus}
 
-bilatearl Temporal Lobe / vlATL [TODO detail]
+With the key question on finding the semantic information encoded by various cortical departments engaged in semantic processing, we propose to test a possible theoretical construction based on the dissociation between \similarity and \association axes. 
 
-Theoretical reconstruction of cerebral activity based on semantic similarity embeddings should found a better modeling performance in semantic hub regions, whereas association embedding reconstructions in other language areas located in other [TODO which \emph{other}?] regions. [TODO rephrase]
+As classical view holds that the temporal cortex hosts semantic memory, more precise semantic hub loci are proposed by different theories. \textcite{priceMetaanalysesObjectNaming2005, pattersonWhereYouKnow2007, binderMappingAnteriorTemporal2011} argue for an bilateral aTL loci, whereas \textcite{ralphNeuralComputationalBases2017} refined the search to ventrolateral aTL. As only at a large-scale is the spatial placement of anatomical convergence zone predictable across individuals~\parencite{damasioNeuralSystemsWord2004}, we ground our hypothetical precision to aTL.
+
+If the so argued semantic hub exists and its loci are stable across individuals, theoretical reconstruction of cerebral activity based on semantic \similarity embeddings should better model semantic hub region activities namely aTL, whereas \association embedding reconstructions in other language areas.
+
+
+
+% \textcite{pattersonWhereYouKnow2007, ralphNeuralComputationalBases2017} proposed the \emph{Hub-and-Spoke} model. It assumes the core role of language and non-verbal experiences when acquiring and updating concept knowledges, which are stored in modality/property-specific cortical areas (such as color, motion), defined as \emph{spokes}.  A mediating transmodal semantic hub is to communicate the modality-dependent information sources, and is argued to be located in the ATL region, concluded from a meta-analysis of studies on semantic processing in human brain, using a variety of imaging methods and task settings. Linguistic, non-linguistic tasks with auditory and visual stimuli, along with generative tasks, all converge to show that bilateral ATL are recruited in object naming, recognition, reading and speech comprehension.

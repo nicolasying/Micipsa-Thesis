@@ -2,24 +2,73 @@
 \label{app:suppmethods}
 
 \section{fMRI Stimuli Preparation}
-\subsection{Stimuli}
+\label{appsec:stimuliAndControl}
 \subsection{Natural Story Stimuli}
-\subsection{Story Transcription and Preprocessing}
-[TODO: add lemmatisation]
+The following section is translated from \textcite{todorovicAnalysesIRMfLors2018}, section 5.2.1.
+
+For the comfort of the participants and their concentration on listening comprehension, the audiobook is divided into 9 blocks, so that each block lasts at most 15 minutes. At the beginning of the French narration of \citetitle{desaint-exuperyLittlePrinceFrench2011}, the audiobook-related information are not included in the stimuli. For each chapter, the reading of chapter title is removed from the audio, and 3 seconds of silence is added. In Table \ref{tab:lppDivision} the 9-block division is detailed. 
+
+\begin{table}
+    \centering
+    \begin{tabularx}{.8\textwidth}{*{2}{L} *{2}{R}}
+    \mc{4}{l}{\tabhead{French \citetitle{desaint-exuperyLittlePrinceFrench2011} Chapter Division}} \\
+    \toprule
+    \tabhead{Block} & \tabhead{Chapters} & \tabhead{Duration} & \tabhead{fMRI Images} \\
+    \toprule
+    1 & 1-3 & 10:12 & 309 \\
+    2 & 4-6 & 10:48 & 326 \\
+    3 & 7-9 & 11:43 & 354 \\
+    4 & 10-12 & 10:25 & 315 \\
+    5 & 13-14 & 09:41 &  293 \\
+    6 & 15-19 & 12:31 & 378 \\
+    7 & 20-22 & 10:59 & 332 \\
+    8 & 23-25 & 09:44 & 294 \\
+    9 & 26-27 & 11:08 & 336 \\
+    \bottomrule
+    \end{tabularx}
+    \caption[French \citetitle{desaint-exuperyLittlePrinceFrench2011} Chapter Division]{fMRI TR=2s.}
+    \label{tab:lppDivision}
+    \end{table}
+
 \subsection{Behavior Control}
+The following section is adapted from \textcite{todorovicAnalysesIRMfLors2018}, section 5.2.2, 5.2.3.
 
-\section{fMRI Acquisition \& Preprocessing}
+As a behavioral control, 4 multiple-choice listening comprehension questions are posed after each story block. The questions are selected and adapted from the English questions used in the fMRI acquisition experiment developed by Cornell University (``Neural Computational Models of Natural Language'', PI: John Hale and Christophe Pallier). Each question is provided with 4 choices. 
+
+To control for the difficulty of the questions and to ensure that participants must have firstly attentively listened to the story to successfully respond to the question, the same questions are distributed and tested to French native speakers without a priori exposure to \citetitle{saint-exuperyPetitPrince1943} in the last 5 years via Information Relay in Cognitive Sciences\footnote{Relais d'information en sciences de la cognition, \url{https://www.risc.cnrs.fr/}.}. The collected responses are used as a control group to test if the fMRI participants respond significantly better.
+
+Additional open comprehension questions are asked to engage the participants into short conversations during the fMRI recording. The questions are asked orally, with a visual aide of a sampled drawing from the currently-played block chapters. If the participants corrected answers three comprehension questions, they are asked to retell the passage concerning the presented image. 
+
+All questions are available in the annex of \textcite{todorovicAnalysesIRMfLors2018}.
+
+\section{fMRI Acquisition}
 \label{appsec:fmriacquisition} % For referencing this appendix elsewhere, use \ref{AppendixA}
-\subsection{Subjects}
-\subsection{fMRI Data Collection}
 \label{appsubsec:fmridata}
-[TODO, block length, image number]
-\subsection{fMRI Data Preprocessing}
 
-\section{Regression Configuration}
-\subsection{Regression Parameters}
+The following section is translated from \textcite{todorovicAnalysesIRMfLors2018}, section 5.1.
+\subsubsection{Subjects}
+
+Continuing from Section \ref{sec:fmriAcquAndPrepro}, the recruited subjects have not exposed to the story of \citetitle{saint-exuperyPetitPrince1943} for at least 5 years, including books, audiobooks and films. They should not have a clear memory of the story. 
+\subsubsection{Experiment Procedure}
+A Siemens MRI scanner at 3 Tesla acquires fMRI images when the participants passively listen to a narration. Each fMRI recording session lasts at most 90 minutes for security considerations, so the 9 blocks of story is recorded in two sessions within the same day, with a 60 - 90 minutes break between. One session consists of 4 or 5 blocks. 
+
+The participants were invited half an hour before the start of the MRI acquisition to have an interview with the Neurospin medical doctor. After the interview, they were received by \citeauthor{todorovicAnalysesIRMfLors2018}. The receiver orally explained the procedure. Then the parcipants were placed in the scanner for an anatomical acquisition session. This session lasted 8 minutes, during which the instructions were displayed, from a pdf file (available in annex of \textcite{todorovicAnalysesIRMfLors2018}), on a screen that could be seen through the mirror that was attached to the participants' head. After the instructions, the images appearing in the first two chapters of the Little Prince were presented, since they were relevant images for understanding the story. After the anatomical acquisition, a sound test (despite the MRI acquisition noise) was performed by playing the introductory sentence of the audiobook. This audio was chosen for the sound test because it had similar acoustic properties to the rest of the audio book and was not used during the listening afterwards. When the sound level was adjusted, text listening starts. Participants listened to the text with their eyes closed to prevent eye movements from disrupting the BOLD signal.
+
+After each block of text, the participants opened their eyes and answered the comprehension questions, displayed on the screen one by one. After reading the question and the proposed answers, the participant gave his answer orally via the intercom and the experimenter recorded the answer. When the given response was not easy to distinguish ("b" or "d"), the participant was asked to read the beginning of the chosen response or to give a word that begins with the letter associated with the chosen response (for example,""b" as a banana"). After the comprehension questions, the open questions were asked, or the participant was asked to retell the heard story. The answers to the open comprehension questions were recorded by the microphone on a mobile phone. A myopia participant did not answer the reflexion questions since she could not see the images without glasses, which she could not wear inside the scanner. 
+
+At the end of the story, an additional five-minute fMRI acquisition was performed. The participant listened to sentences in French and unintelligible audio stimuli, obtained by acoustic deformation of the sentences in French. This procedure allows the language processing areas in the participant's brain to be quickly located.
+
+
+\section{Regression Parameters}
 \label{appsubsec:regressionparameters}
-[TODO: alpha, dimension set]
+
+The tested \(\alpha\) values are 0, \(10^n\) for n in 0, 0.6, 1.2, 1.8, 2.4, 2.5, 2.58, 2.66, 2.74, 2.82, 2.89, 2.97, 3.05, 3.13, 3.21, 3.29, 3.37, 3.44, 3.53, 3.61, 3.68, 3.76, 3.84, 3.92, 4, 4.01, 4.5, 5, 5.50, 5.99, 6, 7, 8.
+
+The tested feature dimensionalities are  1 (\code{RMS}),   2 (\code{WRATE}),   3 (\code{CWRATE}),   4 (begin of embedding features),   6,   8,  10,  12,  14,  16,  18,  20,  22,
+        24,  25,  35,  45,  55,  65,  75,  85,  95, 103 (end of \code{SIM} ), 105,  115, 125, 135,
+       145, 155, 165, 175, 185, 195, 203.
+
+
 
 \section{Supplementary Analysis}
 \subsection{Non-nested Model Comparison} 
@@ -28,6 +77,12 @@ Following the original pipeline proposed in \cite{merkleTestingNonnestedStructur
 
 The particular case for \code{SIM} and \code{ASN} model comparison partially validate the non-equivalence, since the regressor bases are constructed by linear de-correlation, of which the objective is to maximize the found co-linearity between \code{SIM} and \code{MIX} spaces, thus minimize that between \code{SIM} and \code{ASN}.
 
-For the distinguishability, we proceed by using the constructed regressors. We try to test the distinguishability in this particular sample of two semantic representation spaces (against the fMRI stimuli's text data, with application of a convolution filter), by performing linear regressions between the two design matrices (as a collection of regressors). 
+Despite the non-equivalence of semantic models, co-linearity could be introduced in the regressor building stage, where a convolution is introduced. For the distinguishability, we proceed by using the constructed regressors. We try to test the distinguishability in this particular sample of two semantic representation spaces (against the fMRI stimuli's text data, with application of a convolution filter), by performing linear regressions between the two design matrices (as a collection of regressors). 
 
-To simplify the conceptual construction, we proceed similarly with fMRI encoding: from the 9 design matrices of one semantic space, we iteratively pick out one as validation data, the residual being training data. We use training data to construct a GLM, with the target data of the training session design matrices of the other semantic space. Then we test the generalization performance of the predicted model on the validation data. 
+To simplify the conceptual construction, we proceed similarly with fMRI encoding: from the 9 design matrices of one semantic space, we iteratively leave out one as validation data, the other 8 being training data. We use training data to learn a GLM mapping between different semantic embeddings. Then we test the generalization performance of the predicted model on the validation data. 
+
+The comparison is two-fold: the first using \code{SIM} to predict \code{ASN}, the second in the opposite direction.
+\subsection{Comprehensive ROI List}
+\label{appsubsc:roilist}
+
+The collected ROI peaks from literatures are available at \url{http://bit.ly/micipsa_roi_list}.

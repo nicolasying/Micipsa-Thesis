@@ -1,0 +1,58 @@
+\begin{table}
+    \small
+    \centering
+    \begin{ThreePartTable}
+    \begin{tabularx}{\textwidth}{p{1.8cm}p{.5cm}p{1.4cm}p{1cm} *{6}{r}}
+    \mc{6}{l}{\tabhead{\code{RMS/CWRATE/SIM/ASN} Best Modeled Voxel Clusters}} \\
+    \toprule
+    \tabhead{Position} & \tabhead{BA} & \tabhead{Functional Label} & \tabhead{Feature Class} & \tabhead{x} & \tabhead{y} & \tabhead{z} & \tabhead{\#Voxel} & \code{r2} \tabhead{Peak} & \code{r2} \tabhead{Min} \\
+    \toprule
+    \mc{3}{l}{\tabhead{Top .1\%}} \\
+    \midrule
+    \mr[t]{3}{=}{Temporal Sup L} & \mr[t]{3}{=}{41} & \mr[t]{3}{=}{Prim Auditory} &  \code{RMS} &  -59 & -13 & 6 &  56 & .0362 &  .0240 \\ 
+    & & & \code{CWRATE} & -61 & -12 & 4 & 61 &.0387 &  .0259\\
+    & & & \code{SIM} & -60 & -13 & 6 & 53 & .0412 &  .0291 \\
+    & & & \code{SIG} & -61 & -11 & 4 & 87 & .0430 & .0301\\
+    & & & \code{ASN} & -60 & -13 & 6 & 53 & .0388 &  .0293 \\
+    \midrule
+    \midrule
+    \mc{7}{l}{\tabhead{Top 1\%}}   \\
+    \midrule
+    \mr[t]{3}{=}{Temporal Sup L} & \mr[t]{3}{=}{41} & \mr[t]{3}{=}{Prim Auditory} & \code{RMS} & -60 & -12 & 4 & 410 & .0362 &  .0150 \\
+    & & & \code{CWRATE} & -60 & -11 & 4 & 417 &.0387 &  .0178\\
+    & & & \code{SIM} & -60 & -11 & 3 & 522 &.0413 &  .0214\\
+    & & & \code{SIG} & -61 & -17 & 4 & 527 &.0430 &  .0301\\
+    & & & \code{ASN} & -60 & -19 & 4 & 515 &.0388 &  .0218\\
+    \midrule
+    \mr[t]{3}{=}{Cingulum Mid R} & \mr[t]{3}{=}{23} & \mr[t]{3}{=}{-} & \code{RMS} & 0 & -24 & 29 & 69& .0189 & .0150\\
+    & & & \code{CWRATE}&  1 &  -23 & 29 & 55 &.0202 &  .2587\\
+    & & & \code{SIM}& 2 & -24 & 44 & \textbf{37}\tnote{1} & .0243 &  .0214 \\
+    & & & \code{SIG} & 2 & -25 & 45 & 55 &.0250 &  .0301\\
+    & & & \code{ASN} & -\tnote{2} \\
+
+\midrule
+    \mr[t]{3}{=}{Frontal Mid R} & \mr[t]{3}{=}{10} & \mr[t]{3}{=}{-} & \code{RMS} &  29 & 56 & 20 & 103 & .0180 &  .0150\\
+    & & & \code{CWRATE} & 28 &  60 & 19 & 55 &.0221 &  .0178\\
+    & & & \code{SIM} & 29 & 59 & 19 & 92 &.0256 &  .0214\\
+    & & & \code{SIG} & 26 & 57 & 20 & 86 &.0252 &  .0301\\
+    & & & \code{ASN} & 30 & 59 & 19 & 74 &.0259 &  .0218\\
+
+\midrule
+    \mr[t]{3}{=}{Temporal Sup R} & \mr[t]{3}{=}{41} & \mr[t]{3}{=}{Prim Auditory} & \code{RMS} & 61 & -13 & 2 & 337 & .0328 &  .0150\\
+    & & & \code{CWRATE} &  62 & -11 & 3  & 198 &.0342 &  .0178\\
+    & & & \code{SIM} & 62 & -9 & 1 & 264 &.0366 &  .0214\\
+    & & & \code{SIG} & 61 & -11 & 3 & 262 &.0402 &  .0301\\
+    & & & \code{ASN} & 62 & -13 & 3 & 266 &.0370 &  .0218\\
+
+
+\bottomrule
+    \end{tabularx}
+    \begin{tablenotes}
+    \footnotesize
+    \item[] Coordinates are reported in Montreal Neurological Institute (MNI) standardized spaces.
+    \item[1] Cluster size smaller than 47 voxels, 1500 \(\text{mm}^3\).
+    \item[2] Cluster not found. 
+\end{tablenotes}  
+\end{ThreePartTable}
+\caption[\code{RMS/CWRATE/SIM/SIG/ASN} Best Modeled Voxel Clusters]{Across four regressor classes, the best models voxels are consistently found in four cortical areas: bilateral pSTG (BA41, primary auditory), right Mid Cingulum and right aPFC (BA10). The most severe voxel score selection leads to left primary cortex (BA41) activation. With the addition of semantic features including \code{CWRATE}, \code{SIM} and \code{ASN}, left pSTG cluster grows while right MCingulum shrinks. \code{CWRATE} penalizes voxels in right BA10 and BA41, while semantic regressors re-improves the scores. With \code{ASN}, a significant left pSTG cluster centroid posterior shift is observed. No other contrasting differences are found for \code{SIM} and \code{ASN}.\label{tab:rmsCluters}}
+\end{table}

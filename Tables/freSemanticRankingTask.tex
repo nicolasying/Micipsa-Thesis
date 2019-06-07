@@ -1,0 +1,59 @@
+\begin{table}
+    \centering
+    \begin{ThreePartTable}
+    
+    \begin{tabularx}{\textwidth}{RRRRll}
+        \multicolumn{6}{l}{\tabhead{French Semantic Space Semantic Ranking Task Results}} \\
+    \toprule
+    \tabhead{Semantic Space} & \tabhead{Vocabulary Size} & \tabhead{Dimension} & r & \tabhead{SimLex-999} & \tabhead{WS353-ASN} \\  
+    \midrule
+    
+    \mr{5}{*}{\code{SIM}} & \mr{4}{*}{56665} & \mr{4}{*}{634} & Pearson & .3291 & \textbf{.1039} \\  
+    &  &  & p-value & 0 & .1061 \\  
+    \cmidrule{4-6}
+    &  &  & Spearman & .2812 & \textbf{.0511} \\  
+    &  &  & p-value & 0 & .4273 \\  
+    \cmidrule{2-6}
+
+    \multicolumn{4}{r}{Out of Vocabulary} & .048 & .04 \\  
+   \midrule
+
+   \mr{4}{*}{\code{MIX}} & \mr{14}{*}{24519} & \mr{14}{*}{200} & Pearson & .0940 & .1520 \\  
+   &  &  & p-value & .0047 & .0197 \\  
+   \cmidrule{4-6}
+
+    &  &  & Spearman & .1449 & .2078 \\ 
+    &  &  & p-value & 0 & .0014 \\  
+
+    \cmidrule{1-1} \cmidrule{4-6}
+
+   \mr{4}{*}{\code{ASN}} &  &  & Pearson & \textbf{.0629} & \textbf{.1116} \\  
+   &  &  & p-value & .0590 & .0879 \\  
+   \cmidrule{4-6} 
+    &  &  & Spearman & .0771 & .1566 \\  
+    &  &  & p-value & .0206 & .0162 \\  
+
+\cmidrule{1-1} \cmidrule{4-6}
+
+   \mr{4}{*}{\code{SIG}} &  &  & Pearson & .2541 & \textbf{-.0044} \\  
+   &  &  & p-value & 0 & .9458 \\  
+   \cmidrule{4-6}
+
+    &  &  & Spearman & .3121 & \textbf{-.0078} \\  
+   &  &  & p-value & 0 & .9050 \\  
+
+    \cmidrule{2-6}
+
+    \multicolumn{4}{r}{Out of Vocabulary} & .0797 & .0711 \\  
+
+    \bottomrule
+    \end{tabularx}
+    \begin{tablenotes}
+        \footnotesize
+        \item Scores marked in bold have a p-value larger than 0.05.
+    \end{tablenotes}
+    \end{ThreePartTable}
+    
+    \caption[French Semantic Space Semantic Ranking Task Results]{The results are consistent with English semantic spaces, despite the poor quality of French benchmark datasets. \code{SIM} has high performance in \similarity and negligible \association scores. The relatively poor de-correlation between \code{SIM} and \code{MIX} resulted a \code{ASN} still containing abundant \similarity information. \code{SIG} however, cancels out completely \association information even compared with \code{SIM} while retained \similarity signals.}
+    \label{tab:fredecorrelationscores}
+    \end{table}

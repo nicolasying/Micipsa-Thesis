@@ -1,0 +1,26 @@
+\begin{table}
+    \small
+    \centering
+    \begin{ThreePartTable}
+    \begin{tabularx}{\textwidth}{l l p{1.5cm} *{3}{r} *{2}{P{1.2cm}}P{1.4cm}}
+    \mc{6}{l}{\tabhead{\code{SIM} Best Improved Voxel Clusters}} \\
+    \toprule
+    \tabhead{Position} & \tabhead{BA} & \tabhead{Functional Label} & \tabhead{x} & \tabhead{y} & \tabhead{z} & \tabhead{\# Voxel} & \(\Delta\)\code{r2} \tabhead{Peak} & \(-\log_{10}\)\tabhead{ p-value} \\
+    \toprule
+    \mc{7}{l}{\tabhead{Top .5\%}}  &  > .0079 & >4.35   \\
+    \midrule
+    Temporal Mid L & 21 & - & -51 & -34 & 1 & 86 & .0119 &4.35\\
+Parietal Sup L & 7 & - & -27 & -72 & 44 & 17 & .0099 &4.35\\
+Angular R & 39 & - & 35 & -65 & 44 & 49 & .0114 &4.35\\
+Temporal Mid R & 21 & - & 57 & -36 & -0 & 17 & .0098 &4.35\\
+\bottomrule
+    \end{tabularx}
+    % \begin{tablenotes}
+    % \footnotesize
+    % \item[1] A cosine distance near 0 indicates a greater similarity.
+% \end{tablenotes}  
+\end{ThreePartTable}
+\caption[\code{SIM} Voxel Improvement Clusters]{We thresholded Wilcoxon signed-rank test's significance at \(10^{-4.35}\) as a clean cut is found in p-value histogram, which leads to a selection of top .5\% important voxel-model improvements. The largest and most improved voxel-cluster is found in left BA21, then in right angular gyrus which is part of Wernicke's area. A more lateral and smaller-cluster improvement is found in right MTG. \label{tab:simImprovementClusters}}
+\end{table}
+
+%(language, V. S. Ramachandran, and Edward Hubbard published a paper in 2003 metaphores for angular 

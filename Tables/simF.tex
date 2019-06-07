@@ -1,0 +1,29 @@
+\begin{table}
+    \small
+    \centering
+    \begin{ThreePartTable}
+    \begin{tabularx}{\textwidth}{L l L *{3}{r} *{1}{R}}
+    \mc{6}{l}{\tabhead{\code{CWRATE} F-test Significant Voxels}} \\
+    \toprule
+    \tabhead{Position} & \tabhead{BA} & \tabhead{Functional Label} & \tabhead{x} & \tabhead{y} & \tabhead{z} & \tabhead{\# Voxel in Region}\\
+    \toprule
+
+    Temporal Mid L & 39 & - & -65.0 & -52.0 & 3.0 & nan \\
+Heschl L & 4 & PrimMotor & -65.0 & -11.0 & 9.0 & nan \\
+Temporal Mid L & 21 & - & -58.0 & -49.0 & 9.0 & nan \\
+Temporal Mid L & 39 & - & -55.0 & -55.0 & 3.0 & nan \\
+Temporal Sup R & 22 & - & 43.0 & -39.0 & 12.0 & nan \\
+
+\toprule
+\code{ASN} \\
+Lingual R & 19 & - & 21.0 & -64.0 & -0.0 & nan \\
+Occipital Mid R & 18 & VisualAssoc & 33.0 & -80.0 & -0.0 & nan \\
+\bottomrule
+    \end{tabularx}
+    % \begin{tablenotes}
+    % \footnotesize
+    % \item[1] A cosine distance near 0 indicates a greater similarity.
+% \end{tablenotes}  
+\end{ThreePartTable}
+\caption[\code{SIM} F-test Significant Voxels]{The most severe voxel score selection of \code{RMS} leads to left primary cortex (BA41) activation. Also well modeled voxels are distributed in more extensive areas of bilateral BA41 and right BA23 and BA10. With the addition of \code{CWRATE} features, voxel performances are systematically improved. With \code{CWRATE}, no other clusters appear in the thresholded voxel set. Left BA41 has a higher concentration of best modeled voxels, while right BA41 and cingulum mid R [TODO labels] degrade in voxel score ranking. Right BA10 also improves in ranking. \label{tab:simF}}
+\end{table}

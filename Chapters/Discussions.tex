@@ -1,9 +1,76 @@
-\chapter{Discussions} % Main chapter title
+\chapter{Discussion} % Main chapter title
 
-\label{chap:discussions} % For referencing the chapter elsewhere, use \ref{Chapter1} 
+\label{chap:discussions} 
 
 %----------------------------------------------------------------------------------------
+\section{Back to Hypothesis}
 
-\section{Additional regression results with noun, verb, adjective/adverb SIM embeddings}
-Multiple regions in favor of SIM/SIG embeddings, possible causes
+By modeling \similarity processing axis by \code{SIM} and \association by \code{ASN} features, our hypothesis, which is based on convergent literature findings, argues for a bilateral aTL loci of semantic hub, more precisely located in the ventrolateral aspects. By indicating the presence of a content word, the regression model improved the voxel-models located in bilateral mid temporal pole, left middle fusiform gyrus without differentiating \similarity and \association. The constructed \code{SIM} features most improved voxels located in bilateral middle temporal gyrus (TG) and superior parietal gyrus, \code{SIG} in posterior inferior TG, right angular gyrus and bilateral inf frontal gyrus pars triangularis. The \code{SIM}-\code{ASN} contrast revealed preferential models for \code{SIM} in left superior frontal cortex and anterior cingulum. Near significant results in TL are found in bilateral pSTG, left aMTG, right mMTG. No remarkable contrasts are found in inferior and ventral part of TL. The \code{SIG}-\code{ASN} contrast found \code{SIG}'s advantage in primary auditory cortex, posterior fusiform gyrus. The inferior aspect of \code{SIG}'s positive contrast is primarily located in posterior region of TL.
+
+\code{ASN} improvements and contrasts with \similarity consistently report voxel clusters implicated in associative computatio (occipital cortices, angular gyrus (AG), right mMTG, left pMTG and frontal areas), supporting our hypothesis on \association modeling and localization.
+
+While our findings for \code{SIM}/\code{SIG} modeling \similarity are not convergent with the hypothesis, a much simpler construction of \code{CWRATE} captured voxel model improvements in ventral aspects of posterior TL and MTP in anterior TL, which are close to the hypothetical loci. This finding leads to multiple arguments to explain such contradictions. 
+
+
+\section{Precise and Informative Semantic Feature Design}
+
+\subsubsection{Syntagmatics and Modality-Specificity of \emph{Association}}
+
+\emph{Association} is proposed as an umbrella term for all non-\similarity information. Thus \code{ASN} embeddings are built as the residual of subtraction of \similarity embeddings from a mixed embedding. However, since we used GloVe and DepGloVe as our mixed embedding, the corpora used to build these two embeddings are purely textual, thus no explicit perceptual data are provided. An embedding space, composed majorly by syntagmatic information, found its better encoding voxel-model in multiple primary visual and visual association areas (bilateral BA17, 18, 37) and hippocampal and parahippocampal areas (which are associated with social interactions, episodic memory) when contrasted with \similarity (No visual area is reported by contrasting \code{ASN} with non-embedding features). This finding is convergent with our hypothesis on \association constructions: modality-dependent, association with episodic memories. Thus the modality-independent aspect of our \similarity embedding models, which is presumed to extract the rest of information, can also be partially confirmed.
+
+\subsubsection{Impact of \code{CWRATE}}
+
+\code{CWRATE} indicates the necessity of semantic retrieval and processing, thus wraps both \similarity and \association aspects. Most of the voxel-clusters improved by \code{CWRATE} are associated with visual recognition / identification (posterior fusiform), visual association (BA18/19, V2,3,4,5), premotor (Rolandic Oper BA6) visuo-motor coordination (Precuneus, Superior Occipital). But two aTL regions in MTP are also reported, which are near to the neural fiber convergence zone. 
+
+As \code{CWRATE} is a shared feature for \similarity and \association processing, orthonormalizing embedding feature regressors against \code{CWRATE} suppresses a large proportion of semantic-axis-specific signal in fMRI encoding, potentially weakening the contrast between \code{SIM} and \code{ASN}.
+
+\subsubsection{Better Constructions of \code{SIM}}
+
+\code{SIM} models have lower regression scores than \code{ASN}, this could be due to the semantic-axis processing attribution of voxels, or the lack of quality control of the \code{SIM} embedding. The English \code{SIM} embedding is well constructed: WordNet is widely used, the resulting embedding's quality is assured by semantic evaluation tasks.  Whereas for French the ontology is built upon the algorithm-generated \code{WOLF}, which makes use of multilingual resources and is composed of translation-based synsets. The French semantic evaluation task datasets are not tested.  
+
+\textcite{bullinariaExtractingSemanticRepresentations2012} found that removing the initial PCs of singular-value-decomposed (SVD) semantic matrices improves the performance on multiple semantic tasks (such as TOEFL, Distance Comparison, Semantic Categorization and Clustering Purity, fMRI encoding/decoding tasks are not included). In our project we did not remove the initial PCs nor did \citeauthor{bullinariaExtractingSemanticRepresentations2012} provide a practical suggestion on the number of PCs to be pruned. The influence of first PCs in obtained \code{SIM} is very pronounced, they one-hot encode POS information, so that words are organized by grammatical categories in different linearly dissociable sub-spaces. 
+
+There are two aspects of \code{SIM} embedding ameliorations. Firstly, unclear on whether the human brain recruits different neural structures for words of different grammatical categories, removing the first PCs of \code{SIM} might better approximate the argued \similarity axis. Secondly, the PC removal is beneficial for computational advantage of model regressions. For example, \code{SIG}, is not an embedding resulting from a PCA, thus have no dominant dimensions in the embedding. By promoting voxel-model scores, \code{SIG} revealed more voxel clusters in contrast with \code{ASN}. 
+
+\subsubsection{Corpus and Embedding Compatibility}
+
+For out-of-vocabulary words in the \citetitle{saint-exuperyPetitPrince1943} (around 5\% of the vocabulary), null vectors are used to substitute (unknown) semantic values in this project. The semantic vectors however could be approximated using synonyms or associates available in embeddings. The selection of alternative words should be compatible to the semantic axis of the embedding in question.
+
+\section{Limits of fMRI}
+
+\subsubsection{Ventral BOLD Signal Recording}
+
+The adopted multi-echo fMRI sequence is adopted to better extract BOLD signals in ventral cortical areas. Traditional fMRI imaging suffers a low signal-to-noise ratio in the region due to the sinuses located near temporal poles, unable to reveal neural activations \parencite{devlinSusceptibilityInducedLossSignal2000}. The effect of \similarity and \association contrast might be subtle. Despite an improved fMRI targeting higher SNR, it could be suspected that the minute contrast could not be shown by fMRI.
+
+\subsubsection{Temporal Dynamics of Two Semantic Axes}
+
+\textcite{ralphNeuralComputationalBases2017} states that in ventroanterior temporal lobe, domain-level semantic distinctions are available around 120 ms post stimulus onset, and around 250 ms detailed semantic information is activated. \textcite{kutasBrainPotentialsReading1984} suggest that N400 signal of event-related potentials (ERP) is related to word expectancy and semantic association. \textcite{frankWordPredictabilitySemantic2017} contrasted word predictability (syntagmatics) and semantic similarity (paradigmatics) with an EEG and fMRI experiment. While the N400 signal is the same for two type of tasks, \similarity is correlated with mid temporal pole and angular gyrus (consistent with Table \ref{tab:simImprovementClusters}), while word surprisal is correlated with fusiform gyrus (FG), and middle-posterior STG. \code{ASN} is aligned with word predictability, however in our experiment it is correlated with FG improvements but not with STG.
+
+The comparison suggests that our fMRI encoding found N400-related signals but not 120 ms and 250 ms neural correlates. While unclear if the earlier activations are masked by later ones, it seems an analysis on temporal axis might be crucial for \similarity and \association dissociation. Other imaging techniques other than fMRI (e.g. MEG) might reveal more evidence.
+
+\subsubsection{Beyond Lexical Semantics}
+
+In a post-hoc analysis, we correlated different subject-wise model scores trained in 9 cross-validations with each participant's multi-choice comprehension questions (Table \ref{tab:behavioral}). Surprisingly, voxel-models' maximum and mean scores of the semantic embedding regressors are negatively correlated with question correct rate. \code{SIM} and \code{SIG}'s correlations are the most extreme (p<0.05 for both max and mean), \code{ASN}'s mean is near-significance. \code{MIX} is not significant but a negative trend is shown. 
+
+The findings suggest that [TODO, ANOVA] the semantic understanding modeling should not constrained by lexical semantics. To acquire comprehension of a full phrase, sentence or passage, the brain should transform and integrate each lexicon unit's semantic value. A high semantic model performance might be an indicator of dominance of mental representations for lexical semantics, and the phrasal integration of semantic values is to a limited extend. The inequivalent contribution of \similarity and \association in phrasal semantic processing is also suggested, as \similarity principle evolves on \emph{absentia} of a lexical unit's occurrence, with \association pertains a more global view on the present passage.
+
+Again, if lexical semantic information is present post stimulus, it could be better investigated in a tight time window , and the contrast between \similarity and \association lexical semantic values might be more clear.
+
+\section{Statistics}
+
+The threshold in whole-brain voxel model performance visualization (\code{r2} maps) is fixed at 0.005. This choice was arbitrary, and its utility is to filter out uninformative voxels without considering statistical significance of the regression results. As different voxels had different preferential feature dimensions across cross-validation sessions, individuals and models, the group level of significance test for \code{r2} was a complex question. Since significance for \code{r2} is not computed for model regression results, the cluster analysis was performed with selections of a certain proportion of best modeled voxels.
+
+Additionally, the F-test result presentation on nested-model improvement contrast is also controversial as it manipulates p-values. The original design was to present a superposition of significance maps of each individual so that regularities could be tracked, and the geometric mean of p-values is equivalent to algorithmic mean of log p-values. The statistical robustness however is questionable. 
+
+In this project the contrast of model performances lacks in statistical significance: the voxel-model model contrasts had p-values < 0.001 uncorrected, but none survived voxel-wise multi-comparison correction. A small effect size was foreseen since \similarity and \association contrasts are minute. However given the time constraint of the project, recruiting more subjects for additional fMRI recording was not a viable option.
+
+\section{Cognitive Accounts on Coherence between Embeddings, Semantic Principles and Semantic Hub}
+
+We name \similarity the internal organization of the presumed semantic hub, and argued that \similarity is principally constituted with paradigmatic axis proposed by \citeauthor{jakobsonFundamentalsLanguage1963}. Additionally with pathological evidences, multiple properties of \similarity axis are defined: cross-modality and conceptual hierarchy. \emph{Similarity} is modeled by embedding based on WordNet-alike ontologies, conformably constructed with the hypothetical properties of the semantic hub. Semantic evaluation tasks based on word-pair proximity evaluation suggest the validity of \code{SIM}/\code{SIG} model against \similarity, especially for English embeddings where \code{WordNet} and evaluation benchmarks are well founded. Yet no prior experiences confirm the bridging of \similarity and the semantic hub. 
+
+\subsubsection{Pathway to Semantic Hub: Accumulative or Differential?}
+
+In our hypothesis, we presumed that the semantic hub holds a global view of all representational or operational semantic information. Correspondingly, a holistic \similarity embedding is constructed,  containing all semantic entities. Yet, such construction underestimates the participation of non-hub structures (which are domain-specific or feature-specific). The semantic hub is argued to be graded anatomically based on cytoachitecture findings~\parencite{ralphNeuralComputationalBases2017}, an alternative of accumulative information integration from semantic spokes along the processing pathway is a differential semantic information generalization: specific semantic representations are available in non-hub structures, and semantic hub does not represent a copy of information, but computes a more generalized/abstracted version. 
+
+Under this hypothetical vision, the \similarity principle proposed by this project corresponds not only to the strict semantic hub, but also to neural structures connecting to the hub loci. With voxel-specific feature-dimension selection, the regression results might provide insights by analyzing the spatial distribution of preferential effective feature-dimension of voxel-models, if evidences for an increasing semantic specificity is found along the PCA components.
 

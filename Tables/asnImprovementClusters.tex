@@ -1,0 +1,30 @@
+\begin{table}
+    \small
+    \centering
+    \begin{ThreePartTable}
+        \begin{tabularx}{\textwidth}{l l p{1.5cm} *{3}{r} *{2}{P{1.2cm}}P{1.4cm}}
+            \mc{6}{l}{\tabhead{\code{ASN} Best Improved Voxel Clusters}} \\
+    \toprule
+    \tabhead{Position} & \tabhead{BA} & \tabhead{Functional Label} & \tabhead{x} & \tabhead{y} & \tabhead{z} & \tabhead{\# Voxel} & \(\Delta\)\code{r2} \tabhead{Peak} & \(-\log_{10}\)\tabhead{ p-value} \\
+    
+    \toprule
+    \mc{7}{l}{\tabhead{Top 4.7\%}}  &  > .0065 & >4.18   \\
+    \midrule
+    Temporal Mid L & 37 & Fusiform & -53 & -58 & -3 & 131 & .0121 & 4.35\\
+    Frontal Inf Tri L & 46 & - & -46 & 37 & 11 & 68 & .0124 & 4.35 \\
+    Occipital Mid L & 39 & - & -32 & -78 & 41 & 242 & .0125 & 4.35 \\
+    Frontal Sup Medial L & 9 & - & -5 & 58 & 32 & 32 & .0092 & 4.35 \\
+    Cingulum Mid L & 31 & - & -1 & -36 & 43 & 34 & .0105 & 4.35  \\
+    Frontal Mid R & 8 & - & 28 & 15 & 46 & 63 & .0093 & 4.35  \\
+    Angular R & 39 & - & 43 & -75 & 39 & 191 & .0114 & 4.35  \\
+    Temporal Mid R & 21 & - & 46 & -32 & 0 & 182 & .0106 & 4.35 \\
+    Frontal Inf Tri R & 46 & - & 50 & 35 & 8 & 56 & .0107  & 4.35\\
+\bottomrule
+    \end{tabularx}
+    % \begin{tablenotes}
+    % \footnotesize
+    % \item[1] A cosine distance near 0 indicates a greater similarity.
+% \end{tablenotes}  
+\end{ThreePartTable}
+\caption[\code{ASN} Voxel Improvement Clusters]{The Wilcoxon signed-rank test's p-value is thresholded at \(10^{-4.18}\) to make a clean cut is found in p-value histogram. Only 13 voxels reach a significance level of \(10^{-4.35}\) as is done with \code{ASN}. The voxel selection leads to top 4.7\% important voxel-model improvements. The largest \code{r2} boost is found in left MOccipital, followed by right mSTS, right Angular, left pFusiform bilateral iTriFrontal. Relatively smaller clusters are found in MCingulum L, L S Frontal BA9, R M Frontal BA8.  \label{tab:asnImprovementClusters}}
+\end{table}

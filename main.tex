@@ -4,11 +4,10 @@
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 % arara: xelatex: { shell: yes, synctex: yes }
-%TC: ignore
 \documentclass[
 11pt, % The default document font size, options: 10pt, 11pt, 12pt
 %oneside, % Two side (alternating margins) for binding by default, uncomment to switch to one side
-english, % ngerman for German
+american, % ngerman for German
 singlespacing, % Single line spacing, alternatives: onehalfspacing or doublespacing
 % draft, % Uncomment to enable draft mode (no pictures, no links, overfull hboxes indicated)
 %nolistspacing, % If the document is onehalfspacing or doublespacing, uncomment this to set spacing in lists to single
@@ -19,10 +18,21 @@ parskip, % Uncomment to add space between paragraphs
 headsepline, % Uncomment to get a line under the header
 %chapterinoneline, % Uncomment to place the chapter title next to the number on one line
 %consistentlayout, % Uncomment to change the layout of the declaration, abstract and acknowledgements pages to match the default layout
-table
+table,
+dvipsnames
 ]{MastersDoctoralThesis} % The class file specifying the document structure
-%TC: endignore
+
+
+%------------------------Include only----------------------------------------
+% \includeonly{Chapters/Results}
+% \includeonly{Auxiliary/contribution} , Chapters/Methods  Appendices/SupplementaryResults
+
+
+
 %TC:insert [\documentclass{book}]
+% \usepackage{ltablex}
+\usepackage{pdfpages}
+\usepackage{xcolor}
 \usepackage{soulutf8}
 \usepackage{ifdraft}
 \usepackage{tabularx, threeparttablex}
@@ -30,11 +40,10 @@ table
 \usepackage{multirow}
 \usepackage{array}
 \usepackage{amsmath}
-\usepackage{color}
-% \usepackage{xcolor}
+% \usepackage{color}
 \usepackage{caption}
 
-\newcommand{\drafting}{Draft Alpha}
+% \newcommand{\drafting}{Draft Alpha}
 % \renewcommand{\rothead}[2][60]{\makebox[9mm][c]{\rotatebox{#1}{\makecell[c]{#2}}}}
 \ifdefined\drafting
 \overfullrule=1mm
@@ -51,17 +60,24 @@ table
 % \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
 \newcolumntype{R}{>{\raggedleft\arraybackslash}X}
-
+\newcolumntype{P}[1]{>{\raggedleft\arraybackslash}p{#1}}
 % \usepackage[utf8]{inputenc} % Required for inputting international characters
 \usepackage[T1]{fontenc} % Output font encoding for international characters
 \usepackage{float}
 \usepackage{mathpazo} % Use the Palatino font by default
 \usepackage{datetime}
-\usepackage[backend=biber,style=authoryear,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+% \usepackage[american]{babel}
+\usepackage[backend=biber,style=apa,autocite=inline,natbib=true]{biblatex} % Use the bibtex backend  with the authoryear citation style (which resembles APA) TODO, APA
+\DeclareLanguageMapping{english}{english-apa}
+\usepackage[autostyle=true]{csquotes}
 
+\usepackage{tikz}
+\usetikzlibrary{tikzmark}
+
+% \bibliographystyle{biblatex-apa}
 \addbibresource{zotero_synced.bib} % The filename of the bibliography
-
-\usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
+\setcounter{tocdepth}{2}
+% \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
 
 
 %----------------------------------------------------------------------------------------
@@ -85,14 +101,14 @@ table
 \thesistitle{Similarity and Association: \\Principles of Distributed Semantic Processing in the Human Brain} % Your thesis title, this is used in the title and abstract, print it elsewhere with \ttitle
 \supervisor{Sabine \textsc{Ploux}} % Your supervisor's name, this is used in the title page, print it elsewhere with \supname
 \examiner{} % Your examiner's name, this is not currently used anywhere in the template, print it elsewhere with \examname
-\degree{\href{http://sapience.dec.ens.fr/cogmaster/www/}{Research Master in Cognitive Sciences}} % Your degree name, this is used in the title page and abstract, print it elsewhere with \degreename
+\degree{\href{http://sapience.dec.ens.fr/cogmaster/www/}{Research Master in Cognitive Science}} % Your degree name, this is used in the title page and abstract, print it elsewhere with \degreename
 \author{Songsheng \textsc{Ying}} % Your name, this is used in the title page and abstract, print it elsewhere with \authorname
 \addresses{} % Your address, this is not currently used anywhere in the template, print it elsewhere with \addressname
 
 \subject{Cognitive Sciences} % Your subject area, this is not currently used anywhere in the template, print it elsewhere with \subjectname
 \keywords{Lexical Semantics, fMRI, } % Keywords for your thesis, this is not currently used anywhere in the template, print it elsewhere with \keywordnames
-\university{\href{https://www.ens.fr/en}{Ecole Normale Supérieure} \\ \href{https://www.parisdescartes.fr/en/homepage/}{Université Paris Descartes} \\ \href{https://www.ehess.fr/en}{Ecole des Hautes Etudes en Sciences Sociales}} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
-\department{CNRS-EHESS} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
+\university{\href{https://www.ens.fr/en}{Ecole Normale Supérieure} \\[0.2cm] \href{https://www.parisdescartes.fr/en/homepage/}{Université Paris Descartes} \\[0.2cm] \href{https://www.ehess.fr/en}{Ecole des Hautes Etudes \\en Sciences Sociales}} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
+\department{CAMS, UMR 8557 CNRS-EHESS} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
 \group{\href{http://cams.ehess.fr/the-cams/}{Centre for Social Analysis and Mathematics}} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
 \faculty{\href{http://faculty.university.com}{Faculty Name}} % Your faculty's name and URL, this is used in the title page and abstract, print it elsewhere with \facname
 
@@ -111,7 +127,8 @@ table
 \newcommand{\option}[1]{\texttt{\itshape#1}}
 
 \begin{document}
-%% TC:ignore
+%TC:ignore
+
 \frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
 
 \pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
@@ -123,13 +140,13 @@ table
 \begin{titlepage}
 \begin{center}
 
-\vspace*{.06\textheight}
+\vspace*{.02\textheight}
 {\scshape\LARGE \univname\par}\vspace{1.5cm} % University name
 \textsc{\Large Master Thesis}\\[0.5cm] % Thesis type
 
 \HRule \\[0.4cm] % Horizontal line
 {\huge \bfseries \ttitle\par}\vspace{0.4cm} % Thesis title
-\HRule \\[1.5cm] % Horizontal line
+\HRule \\[1cm] % Horizontal line
  
 \begin{minipage}[t]{0.4\textwidth}
 \begin{flushleft} \large
@@ -141,7 +158,8 @@ table
 \begin{flushright} \large
 \emph{Supervisors:} \\
 \href{http://cams.ehess.fr/sabine-ploux/}{\supname}\\ % Supervisor name - remove the \href bracket to remove the link  
-\href{http://cams.ehess.fr/laurent-bonnasse-gahot/}{Laurent \textsc{Bonnasse-Gahot}}
+\href{http://cams.ehess.fr/laurent-bonnasse-gahot/}{Laurent \textsc{Bonnasse-Gahot}} \\[0.3cm]
+\emph{Co-supervisor:} \\
 \href{http://www.pallier.org/pages/cv.html#cv}{Christophe \textsc{Pallier}}
 \end{flushright}
 \end{minipage}\\[2cm]
@@ -150,7 +168,7 @@ table
 
 \large \textit{A thesis submitted in fulfillment of the requirements\\ for the degree of }\\
 \large \textit{\degreename}\\[0.5cm] % University requirement text
-\textit{Research project executed in the}\\[0.4cm]
+\textit{Research project executed in the}\\
 \groupname\\\deptname\\[2cm] % Research group name and department name
  
 \vfill
@@ -182,13 +200,17 @@ table
 %----------------------------------------------------------------------------------------
 \ifdefined\drafting
 \else
-\include{Auxiliary/originality}
 \fi
+\include{Auxiliary/originality}
 
 \ifdefined\drafting
-\include{Auxiliary/contribution}
 \else
 \fi
+\include{Auxiliary/contribution}
+
+\addcontentsline{toc}{chapter}{Preregistration}
+\includepdf[pages=-]{Micipsa_Preregistration.pdf}
+
 
 \ifdefined\drafting
 \else
@@ -196,78 +218,46 @@ table
 %	QUOTATION PAGE
 %----------------------------------------------------------------------------------------
 
-\vspace*{0.2\textheight}
+% \vspace*{0.2\textheight}
 
-\noindent\enquote{\itshape Thanks to my solid academic training, today I can write hundreds of words on virtually any topic without possessing a shred of information, which is how I got a good job in journalism.}\bigbreak
+% \noindent\enquote{\itshape Thanks to my solid academic training, today I can write hundreds of words on virtually any topic without possessing a shred of information, which is how I got a good job in journalism.}\bigbreak
 
-\hfill Dave Barry
+% \hfill Dave Barry
 \fi
 
 %% TC:break [abstract]
 \ifdefined\drafting
 \else
-\include{Auxiliary/abstract}
+% \include{Auxiliary/abstract}
 \fi
 
-\ifdefined\drafting
-\else
-\include{Auxiliary/acknowledgements}
-\fi
+% \ifdefined\drafting
+% \else
+% \include{Auxiliary/acknowledgements}
+% \fi
+
+\begingroup
+\let\cleardoublepage\relax
 
 \tableofcontents % Prints the main table of contents
-
 \ifdefined\drafting
 \else
+
 \listoffigures % Prints the list of figures
+\clearpage
 \listoftables % Prints the list of tables
 \fi
 
 \include{Auxiliary/abbreviations}
 
-\ifdefined\drafting
-\else
-%----------------------------------------------------------------------------------------
-%	PHYSICAL CONSTANTS/OTHER DEFINITIONS
-%----------------------------------------------------------------------------------------
+\include{Auxiliary/roiabbreviations}
+\endgroup
 
-\begin{constants}{lr@{${}={}$}l} % The list of physical constants is a three column table
-
-% The \SI{}{} command is provided by the siunitx package, see its documentation for instructions on how to use it
-
-Speed of Light & $c_{0}$ & \SI{2.99792458e8}{\meter\per\second} (exact)\\
-%Constant Name & $Symbol$ & $Constant Value$ with units\\
-
-\end{constants}
-
-%----------------------------------------------------------------------------------------
-%	SYMBOLS
-%----------------------------------------------------------------------------------------
-
-\begin{symbols}{lll} % Include a list of Symbols (a three column table)
-
-$a$ & distance & \si{\meter} \\
-$P$ & power & \si{\watt} (\si{\joule\per\second}) \\
-%Symbol & Name & Unit \\
-
-\addlinespace % Gap to separate the Roman symbols from the Greek
-
-$\omega$ & angular frequency & \si{\radian} \\
-
-\end{symbols}
-\fi
-
-\ifdefined\drafting
-\else
-%----------------------------------------------------------------------------------------
-%	DEDICATION
-%----------------------------------------------------------------------------------------
-
-\dedicatory{For/Dedicated to/To my\ldots} 
-\fi
+\cleardoublepage
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - CHAPTERS
 %----------------------------------------------------------------------------------------
-%% TC:endignore
+%TC:endignore
 %TC:break body
 \mainmatter % Begin numeric (1,2,3...) page numbering
 
@@ -281,9 +271,10 @@ $\omega$ & angular frequency & \si{\radian} \\
 \include{Chapters/Methods}
 \include{Chapters/Results} 
 \include{Chapters/Discussions}
+\include{Chapters/Conclusion}
 
 \appendix % Cue to tell LaTeX that the following "chapters" are Appendices
-%% TC:ignore
+%TC:ignore
 %TC:break [appendix]
 % Include the appendices of the thesis as separate files from the Appendices folder
 % Uncomment the lines as you write the Appendices
@@ -294,6 +285,6 @@ $\omega$ & angular frequency & \si{\radian} \\
 %\include{Appendices/AppendixC}
 
 \printbibliography[heading=bibintoc]
-%% TC:endignore
+%TC:endignore
 
 \end{document}  

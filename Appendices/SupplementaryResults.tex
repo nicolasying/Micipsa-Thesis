@@ -2,7 +2,50 @@
 \label{app:suppresults}
 \section{Semantic Embeddings}
 \subsection{Visualization of Semantic Spaces with TensorFlow Projector}
-[TODO: analysis of general form, examples by listing the most close words in space]
+\label{appsubsec:projectorvisu}
+
+The French \code{SIM} space's first four PCs encodes POS information. Thus the 3D PCA presentation of \code{SIM} is three axes parallel to the visualization axes (Figure \ref{fig:freSIMmarcher}). 
+\begin{table}
+    \centering
+    \begin{tabularx}{\textwidth}{*{4}{P{.23\textwidth}}}
+    \mc{4}{l}{\tabhead{French Semantic Embeddings}} \\
+    \mc{4}{l}{\tabhead{Target word:} professeur\_n} \\
+    \toprule
+    \code{SIM} & \code{SIG}& \code{ASN} & \code{MIX} \\
+    \toprule
+    pédagogue\_n & pédagogue\_n & fondateur\_n & naissance\_n\\
+éducateur\_n & éducateur\_n & psychose\_n & psychose\_n\\
+instituteur\_n & instructeur\_n & éducation\_n & éducation\_n\\
+instructeur\_n & instituteur\_n & serveur\_n & secrétaire\_n\\
+arbitre\_n & arbitre\_n & secrétaire\_n & logique\_a\\
+lecteur\_n & adjudant\_n & défenseur\_n & fondateur\_n\\
+enseignant\_n & passe\_n & imitation\_n & chronique\_a\\
+passe-partout\_n & passe-partout\_n & vicaire\_n & imitation\_n\\
+passepartout\_n & lecteur\_n & sensation\_n & sensation\_n\\
+passe\_n & enseignant\_n & protecteur\_n & honneur\_n\\
+adjudant\_n & abonné\_n & protectionnisme\_n & traumatisme\_n\\
+aide\_de\_camp\_n & maestro\_n & volontaire\_n & vicaire\_n\\
+maître\_n & spécialiste\_n & fonctionnaire\_n & facilité\_n\\
+maestro\_n & châtelain\_n & naissance\_n & serveur\_n\\
+capitaine\_de\\ \_vaisseau\_n & capitaine\_n & photographie\_n & proposition\_n\\
+maître\_d'hôtel\_n & commandant\_n & producteur\_n & disparition\_n\\
+commandant\_n & propriétaire\_n & évidence\_n & moteur\_n\\
+capitaine\_n & professionnel\_n & honneur\_n & sagesse\_n\\
+spécialiste\_n & leader\_n & croisade\_n & croisade\_n\\
+commandement\_n & contributeur\_n & missionnaire\_n & évidence\_n\\
+abonné\_n & possesseur\_n & moteur\_n & quantité\_n\\
+overlord\_n & savant\_n & pluralisme\_n & défaillance\_n\\
+châtelain\_n & commandement\_n & sagesse\_n & édition\_n\\
+précepte\_n & acquéreur\_n & coexistence\_n & défenseur\_n\\
+fondateur\_n & acheteur\_n & objectif\_a & volontaire\_n\\
+débutant\_n & participant\_n & facilité\_n & protecteur\_n\\
+tyro\_n & officiel\_n & disparition\_n & pluralisme\_n\\
+\bottomrule
+    \end{tabularx}
+    \caption[Exemplar Neighborhoods in French Semantic Embeddings]{}
+    \label{tab:freNeighbour}
+    \end{table}
+
 
 \begin{figure}
     \centering
@@ -33,104 +76,207 @@
     \label{fig:engSIMwalk}
 \end{figure}
 
-\label{appsubsec:projectorvisu}
 \subsection{Semantic Ranking Task Results}
 \label{appsubsec:wnembeddingtests}
-% \subsection{English \code{WordNetEmbedding} Iterations}
-\begin{table}
-\begin{tabularx}{\textwidth}{*{9}{X}}
-    \toprule
-    {} &                                         Unnamed: 1 &                                   Unnamed: 2 & Unnamed: 3 & Unnamed: 4 & Similarity & Unnamed: 6 & Unnamed: 7 & Association \\
-    \midrule
-    0  &                                          Relations &                              Vocabulary Size &  Dimension &     Metric &     SIMLEX &  WS353-SIM &     RG1965 &   WS353-ASN \\
-    1  &                                                NaN &                                          NaN &        NaN &        OOV &      0.002 &       0.02 &          0 &       0.012 \\
-    2  &                                           Synonymy &                                          15k &        850 &    Pearson &     0.2256 &     0.2679 &     0.3627 &       0.123 \\
-    3  &                                                NaN &                                          NaN &        NaN &   Spearman &     0.2001 &     0.2003 &     0.3403 &      0.0971 \\
-    4  &                                           Synonymy &                                          60k &        850 &    Pearson &      0.234 &     0.2112 &     0.3394 &      0.1449 \\
-    5  &                                                NaN &                                          NaN &        NaN &   Spearman &     0.1747 &     0.1895 &     0.2629 &      0.1129 \\
-    6  &                                     Syn + Antonymy &                                          15k &        850 &    Pearson &     0.1534 &     0.2743 &      0.373 &      0.0969 \\
-    7  &                                                NaN &                                          NaN &        NaN &   Spearman &     0.1255 &     0.1922 &     0.3302 &      0.0817 \\
-    8  &                         Syn + Hypernymy + Hyponymy &                                          15k &        850 &    Pearson &     0.3904 &     0.4825 &     0.6187 &      0.0373 \\
-    9  &                                                NaN &                                          NaN &        NaN &   Spearman &     0.4018 &     0.3856 &     0.5145 &      0.0259 \\
-    10 &  Syn + Hyper+ Hypo + adj.participle\_of\_verb + a... &                                          15k &        850 &    Pearson &     0.5079 &     0.5333 &     0.6784 &      0.0525 \\
-    11 &                                                NaN &                                          NaN &        NaN &   Spearman &     0.4986 &     0.4214 &      0.576 &      0.0272 \\
-    12 &  Syn + hyper + hypo + participle + adj.similar ... &                                          15k &        511 &    Pearson &      0.506 &        NaN &        NaN &      0.0279 \\
-    13 &                                                NaN &                                          NaN &        NaN &   Spearman &     0.4989 &        NaN &        NaN &      0.0193 \\
-    14 &  Syn + hyper + hypo + participle + adj.similar ... &                                          60k &        511 &    Pearson &     0.5268 &     0.5483 &     0.6991 &      0.1092 \\
-    15 &                                                NaN &                                          NaN &        NaN &   Spearman &     0.5152 &     0.4757 &     0.5501 &      0.0515 \\
-    16 &                                                NaN &                                          NaN &        NaN &        NaN &        NaN &        NaN &        NaN &         NaN \\
-    17 &                                      Common Crawl  &                                  2.2M, cased &        300 &    Pearson &     0.3946 &     0.6573 &     0.6812 &      0.6091 \\
-    18 &                                                NaN &                                          NaN &        NaN &   Spearman &     0.3752 &     0.6298 &     0.6577 &      0.5709 \\
-    19 &                                                NaN &                                          NaN &        NaN &        OOV &        0.1 &          0 &          0 &           0 \\
-    20 &                             CommonCraw - 01-23 Sim &                                         8157 &        300 &    Pearson &     0.1953 &     0.5854 &     0.5547 &      0.5633 \\
-    21 &                                                NaN &                                          NaN &        NaN &   Spearman &     0.2133 &     0.5719 &     0.5641 &      0.5918 \\
-    22 &                                                NaN &                                          NaN &        NaN &        OOV &        NaN &        NaN &        NaN &         NaN \\
-    23 &                                                All &                                 13k specific &        850 &    Pearson &        0.5 &       0.65 &       0.65 &        0.32 \\
-    24 &                                                NaN &                                          NaN &        NaN &   Spearman &       0.52 &       0.67 &       0.75 &        0.33 \\
-    25 &                                                NaN &                                   60k random &        NaN &    Pearson &        0.5 &       0.51 &       0.56 &        0.31 \\
-    26 &                                                NaN &                                          NaN &        NaN &   Spearman &       0.51 &       0.58 &       0.72 &         0.3 \\
-    27 &                                   Synonym Database &  60k (multi-word phrases eliminated → 36718) &        850 &    Pearson &     0.6814 &     0.5819 &     0.8155 &       0.317 \\
-    28 &                                                NaN &                                          NaN &        NaN &   Spearman &     0.6566 &     0.4677 &     0.7032 &      0.3153 \\
-    29 &                                                NaN &                                          NaN &        NaN &        OOV &        6.6 &       22.7 &        7.7 &          19 \\
-    \bottomrule
-    \end{tabularx}
-\end{table}
+\input{Tables/engWordNetIteration}
 
 \subsection{Vocabulary Coverage by POS}
-\begin{table}
-    \centering
-    \begin{ThreePartTable}
-        
-    \begin{tabularx}{\textwidth}{L *{10}{R}}
-    \multicolumn{11}{l}{\tabhead{The Little Prince Vocabulary Coverage}} \\
-    \toprule
-    &  & \multicolumn{9}{l}{\tabhead{\# Instances in fMRI Recording Session}} \\
-    \toprule
-    \mr{2}{*}{Story} & \textbf{T} & 725 & 812 & 860 & 762 & 732 & 902 & 819 & 712 & 802 \\
-    & \textbf{V} & F & 812 & 860 & 762 & 732 & 902 & 819 & 712 & 802 \\
-    \midrule
-    \mr{4}{*}{\parbox{0.8cm}{\code{SIM} 56665}} & TM & 36 & 30 & 32 & 27 & 30 & 33 & 24 & 30 & 27 \\
-    & \% & F & 812 & 860 & 762 & 732 & 902 & 819 & 712 & 802 \\
-    & VM & F & 812 & 860 & 762 & 732 & 902 & 819 & 712 & 802 \\
-    & \% & F & 812 & 860 & 762 & 732 & 902 & 819 & 712 & 802 \\
-    \midrule
-    \mr{4}{*}{\parbox{0.8cm}{\code{ASN} /\code{MIX} /\code{SIG} 24519}} & TM & 48 & 47 & 38 & 37 & 48 & 60 & 35  & 37 & 41 \\
-    & \% & F & 812 & 860 & 762 & 732 & 902 & 819 & 712 & 802 \\
-    & VM & F & 812 & 860 & 762 & 732 & 902 & 819 & 712 & 802 \\
-    & \% & F & 812 & 860 & 762 & 732 & 902 & 819 & 712 & 802 \\
-    \bottomrule
-    \end{tabularx}
-    \end{ThreePartTable}
-    \caption[The Little Prince Vocabulary Coverage in Semantic Spaces]{\textbf{T}: Token, \textbf{V}: Vocabulary, M: Miss\label{apptab:lppcoverage}}
-    \end{table}
+\input{Tables/lppcoveragePOS}
+
 
 \subsection{Corpus-Targeted Semantic Feature Selection}
-\begin{figure}
-    \centering
-    \makebox[\linewidth]{
-    \includegraphics[scale=1]{Figures/SimDimensionSelectionRegLPP.pdf}
-    }
-    \caption[French \code{MIX} Regressor Variances]{Placeholder} 
-    \label{fig:freMIXRegVar}
-\end{figure}
-\begin{figure}
-    \centering
-    \makebox[\linewidth]{
-    \includegraphics[scale=1]{Figures/SimDimensionSelectionRegLPP.pdf}
-    }
-    \caption[French \code{SIG} Regressor Variances]{Placeholder} 
-    \label{fig:freSIGRegVar}
-\end{figure}
+[TODO still necessary?]
 
 
 \section{Non-nested Model Comparison}
 \label{appsubsec:nonnestedcompres}
 
+\subsubsection{Use \code{SIM} to Predict \code{ASN}}
+[TODO, insert heat-map of coefficients]
+Each of the 203 columns in the \code{ASN} class design matrix (including non-semantic features) are predicted by 103 columns of the \code{SIM} class design matrix. We averaged the \code{r2} score of each column model across 9 cross-validation runs. The histogram of the scores are plotted in Figure \ref{fig:SIMASNDist}, informative model scores are presented in Table \ref{tab:SIMASNScores}. As our design-matrices are orthonormalized, columns sitting at larger indexes have a dependency on smaller-indexed columns. The first columns being bell predicted start at index 12 (to 14). Other columns are scattered up to index 47. We can therefore conclude that the predictability found are purely due to numerical coincidences.
+
+\begin{figure}
+    \centering
+    \begin{minipage}[t]{.5\textwidth}
+        \centering
+        \makebox[.5\linewidth]{
+            \includegraphics[scale=.8]{Figures/SIMASNDist.pdf}
+            }
+            \caption[\texttt{SIM} Predicted \texttt{ASN} Column Model]{3 columns are perfectly predicted as they are non-semantic features that are shared by the design matrices. For the rest most of the column-models are worse than arbitrary models.} 
+            \label{fig:SIMASNDist}
+    \end{minipage}%
+    \begin{minipage}[t]{.5\textwidth}
+        \centering
+        \makebox[.5\linewidth]{
+            \includegraphics[scale=.8]{Figures/ASNSIMDist.pdf}
+            }
+            \caption[\texttt{ASN} Predicted \texttt{SIM} Column Model]{Most of the column-models are worse than arbitrary models. More columns in \code{SIM} are better predicted with \code{ASN} design matrices.} 
+            \label{fig:ASNSIMDist}
+    \end{minipage}
+\end{figure}
+
+
+\begin{table}
+    \centering
+    \begin{ThreePartTable}
+    \begin{tabularx}{\textwidth}{p{1.7cm} *{11}{L}}
+    \mc{12}{l}{\tabhead{\texttt{SIM} Predicted \texttt{ASN} Column Model Performances}} \\
+    \toprule
+    \tabhead{Col Index} & 22 & 20 & 14 & 37 & 47 & 18 & 27 & 26 & 13 & 12 & 30 \\  
+    \tabhead{\code{r2}} & .0891 & .0834 & .0548 & .0346 & .0164 & .0152 & .0122 & .0113 & .0112 & .0075 & .0004 \\  
+    \tabhead{\code{r}} & .2984 & .2887 & .2340 & .1861 & .1279 & .1233 & .1104 & .1064 & .1058 & .0867 & .0203 \\
+    \bottomrule
+    \end{tabularx}
+    \end{ThreePartTable}
+    \caption[\texttt{SIM} Predicted \texttt{ASN} Column Model Performances]{Index starts at 0, \code{ASN} group features starts from 3.  Among the 14 informative models (\code{r2} > 0), 3 are non-semantic features (not listed above). Pearson's \code{r} are converted from \code{r2}. \label{tab:SIMASNScores}}
+\end{table}
+
+\begin{table}
+    \centering
+    \begin{ThreePartTable}
+    \begin{tabularx}{\textwidth}{p{1.7cm} *{11}{L}}
+    \mc{12}{l}{\tabhead{\texttt{ASN} Predicted \texttt{SIM} Column Model Performances}} \\
+    \toprule
+    \tabhead{Col Index} & 6 & 3 & 5 & 11 & 4 & 7 & 75 & 18 & 42 & 25 & 47 \\  
+    \tabhead{\code{r2}} & .2761 & .2646 & .2041 & .1256 & .1032 & .0971 & .0529 & .0485 & .0192 & .0158 & .0107 \\  
+    \tabhead{\code{r}} & .5254 & .5144 & .4518 & .3544 & .3213 & .3116 & .2299 & .2202 & .1385 & .1256 & .1037 \\
+    \bottomrule
+    \end{tabularx}
+    \end{ThreePartTable}
+    \caption[\texttt{ASN} Predicted \texttt{SIM} Column Model Performances]{Index starts at 0, \code{SIM} group features starts from 3. \code{SIM} columns are much better predicted by \code{ASN}. \label{tab:ASNSIMScores}}
+\end{table}
+
+\subsubsection{Use \code{ASN} to Predict \code{SIM}}
+
+The same procedure yields also 14 effective column models for \code{SIM}. The correlation coefficients are significantly higher than the models predicted with \code{SIM} matrices. Besides, the first 5 columns of \code{SIM} are all well predicted (\code{r} > 0.30) by \code{ASN}, indicating there's partial signal information overlap between the two models. Since Section \ref{appsubsec:projectorvisu} shows that the first 4 dimensions in \code{SIM} one-hot encode POS information, it is reasonable that POS information is also traceable in syntagmatic-information dominated semantic embedding.
+
+To further investigate the column-wise correlation, we also plot the coefficients of each \code{ASN} column learned by GLM. [TODO heatmap average].
+
 \section{Regression}
 \subsection{More on \(\alpha\) and Dimension Selection}
 \label{appsubsec:alphadim}
-[TODO, alpha and dim values]
 
+\subsubsection{Completeness of Research Space}
+
+For illustrative purpose, we selected four typical voxels in post-hoc from the regression results of \code{MIX}, run 1 subject 1 (Figure \ref{fig:TypicalVoxelDistributionS1R1})\footnote{Interactive version of the plot available online \url{https://plot.ly/~neegola/11/}.}. \code{MIX} is used since it is the default semantic space used in other works and has not been modified. Each voxel is the best modeled voxel who maximizes \code{r2} among all \(\alpha\)s using only partial feature information of a certain regressor class. For example, a \code{CWRATE} class typical voxel is a voxel of which the best \code{r2} is achieved with \emph{all} first 3 features (\code{dim=3}). 
+
+\begin{figure}
+    \centering
+    \makebox[\linewidth]{
+    \includegraphics[scale=1]{Figures/TypicalVoxelDistributionS1R1.pdf}
+    }
+    \caption[Typical-Voxels' Response to \(\alpha\) and Dimension]{A selection of typical voxels found in \code{MIX} model regression results of subject 1 run 1. As shown by all four voxels, the regularization by large \(\alpha\) is beneficial only in higher feature dimensions. Our selection of \(\alpha\) contains a near-optimal value candidates for these voxels since the curve is all declining for the largest values. Green plots indicate the top 10 best configurations of the given voxel.} 
+    \label{fig:TypicalVoxelDistributionS1R1}
+\end{figure}
+
+The optimal \code{r2}s of typical voxels are never attained at the upper bound of \(\alpha\) and dimension space. We plotted the heat-map for all voxels from the same run to verify if it is also the case at the whole-brain level (e.g. Figure \ref{fig:MIX_HeatmapAlphaDimS1R1}). We averaged 9 cross-validation run results to visualize subject-level best configuration distribution (Figure \ref{fig:MIX_HeatmapAlphaDimS1R0}). Histograms of best dimension and \(\alpha\) voxel-configuration of the averaged results are also plotted in Figure \ref{fig:MIX_CountPlotAlphaDimS1R0}. Plots for all runs and all subjects are available online\footnote{[TODO] add public url}. The analysis confirms that our parameter combination test range contains the near-optimal configuration for each voxel.
+
+\begin{figure}
+    \centering
+    
+    \makebox[.5\linewidth]{
+            \includegraphics[scale=.8]{Figures/MIX_HeatmapAlphaDimS1R1.pdf}
+            }
+            \caption[Session Best Hyper-parameter Configuration Voxel-Count Heat-map]{[TODO fix title display] The scores are retrieved from \code{MIX} model regression for subject 1, fMRI run 1. Each cell represents an \(\alpha\) and dimension combination. The color indicates the logarithm of number of voxels having its global optimality with a given parameter set after having filtered out non-informative voxels (\code{r2} < 0). For small dimensions (< 35), small \(\alpha\)s (including 0) achieve the best performance. Starting from dimension 35, Ridge regularization with larger \(\alpha\)s is necessary.} 
+            \label{fig:MIX_HeatmapAlphaDimS1R1}
+   
+\end{figure}
+
+\begin{figure}
+    \centering
+    \makebox[\linewidth]{
+    \includegraphics[scale=1]{Figures/MIX_CountPlotAlphaDimS1R0.pdf}
+    }
+    \caption[Best Hyper-parameter Configuration Voxel-Count Histograms]{[TODO, fix axis display] \textbf{Left panel}: Among informative voxels, a large portion of voxels are best modeled by \code{RMS} and \code{CWRATE} regressor classes. The addition of each semantic dimension from \code{MIX} improved a small proportion of voxel-models, marginal might be the contribution. \textbf{Right panel}: Most of the voxels are best modeled without Ridge regularization. The larger number obtained at \(\alpha=10000\) might indicate that larger alpha values might help better model a thousand voxels. A cumulation of voxel-count at the upper bound of the \(\alpha\) axis is noted: we performed post-hoc test for larger \(\alpha\) values than in the initial configuration, but the improvement of \code{r2} over the original score is marginal (\(<10^{-4}\)) for a sample of these voxels. A post-hoc analysis of larger \(\alpha\)s indicates a limited improvement of \code{r2}, thus for computational simplicity we kept the original Grid Search space of \(\alpha\).\label{fig:MIX_CountPlotAlphaDimS1R0}} 
+    
+\end{figure}
+
+\subsubsection{\(\alpha\) Variability across Voxels}
 [TODO: histogram animation with alpha evolution, ]
 
 [TODO: discussion on overfit by dimension, despite regularization]
+
+
+
+
+\subsection{Impact of \code{CWRATE}}
+[TODO: Taking over SIM/ASN ? Visualize regression results without CWRATE]
+
+\section{Embedding Model Brain Maps}
+\subsection{\code{SIM} and \code{ASN} F-test}
+\input{Tables/asnImprovementClusters}
+\input{Tables/F}
+
+\subsection{\code{SIG} Nested Model and Contrast} 
+\label{subsec:sig}
+[TODO: replace SIM by SIG]
+
+\begin{figure}
+    \centering
+    \makebox[\linewidth]{
+    \includegraphics[width=.8\paperwidth]{Figures/SIG_ContrastMapG.pdf}
+    }
+    \caption[Encoding with \code{SIG} Features, Group]{[TODO]\textbf{Left panels}: The global activation pattern is unchanged with the feature addition. Best modeled zones are bilateral primary auditory cortices. \textbf{Right upper panel}  shows that \code{SIM} better models bilateral MTG, sup Parietal, Angular Gyrus (part of Wernicke's area), supramarginal gyrus and prefrontal areas (Table \ref{tab:simImprovementClusters}). F-test in \textbf{right lower panel} reports significant voxels in left pMTG BA21, 39, right pSTG BA22 and left Heschl BA4 (Table \ref{tab:Ftest}). Subject-wise results are available online at \url{http://bit.ly/micipsa_sim_wholebrain}.} 
+    \label{fig:SIG_ContrastMapG}
+\end{figure}
+
+
+\input{Tables/sigImprovementClusters}
+[SIG 209, No particularly different results are found. in PeaksSIG.ipynb]
+
+[TODO, SIM->SIG]
+We added with upon non semantic-embedding models \code{SIM} freatures to construct \similarity semantic models. While the whole-brain activation pattern stays globally unchanged (Figure \ref{fig:SIM_ContrastMapG} for group-wise average), in \code{SIM} voxel-models, left primary cortex are better ranked than in \code{BASE} model, while right mid cingulum models degrade (Table \ref{tab:rmsCluters}). \code{SIM} enlarges the performance superiority of left STG over right STG, indicating a left preference for textual semantic \similarity processing. The shrinkage of Mid Cingulum's proportion in top 1\% voxel models might imply that it has a limited participating in \similarity processing. The \code{r2} distribution analysis (Figure \ref{fig:SIM_ASN_Distribution} left) shows that in group-average \code{SIM} is informative for most of the voxel-models and none of voxels is overfitted by this addition. Table \ref{tab:simImprovementClusters} reports the most improved voxel clusters by \code{SIM} to be located in bilateral MTG, left Sup Parietal and right Angular Cortex (W=210, \(\Delta\)\code{r2}>0.0079, p-value<\(10^{-4.35}\) uncorrected). Left MTG improvements are more extensive and more important than right MTG. F-test results shows that \code{SIM} significantly improves isolated voxels (Table \ref{tab:Ftest}, p-value<0.05 voxel-wise multi-comparison corrected) in left pMTG BA21, 39, right pSTG BA22.
+
+
+\subsubsection{With \code{SIG}}
+\begin{figure}
+    \centering
+    \makebox[\linewidth]{
+    \includegraphics[width=.4\paperwidth]{Figures/EMB_SIG_ASN_r2_ContrastMapG.pdf}
+    }
+    \caption[\code{SIG}-\code{ASN} Contrast, Group]{[TODO]The differences of best voxel-model \code{r2}s are plotted. \code{SIM} preference is found in left BA10 SPFC, l aCC, l STS, l MPFC, r IParietal, r STG, MTG (Table \ref{tab:simasnContrastClusters_sim}) ... \code{ASN} preferences are found in bilateral BA18, RBA2-, l BA7 SParietal, R bA18, l BA37, l BA19, (visual association, fusimorm, primary visual, Parahip, and Thalamus). Subject-wise results are available online at \url{http://bit.ly/micipsa_sig_asn_contrast}} 
+    \label{fig:EMB_SIG_ASN_ContrastMapG}
+\end{figure}
+
+\input{Tables/sig_asnContrastCluster}
+
+Section \ref{appsubsec:nonnestedcompres} suggests that first feature dimensions of \code{SIM} can be partially recovered by \code{ASN} model. Therefore, \code{ASN} might also be able to model voxels using less than 5 features from \code{SIM}, the result might thus lack low-level \code{SIM}/\code{ASN} contrast. As the first 4 dimensions of \code{SIM} encodes primarily POS information (Section \ref{appsubsec:projectorvisu}), we performed ad-hoc regressions on \code{SIM} space but uses only lemmas from a certain grammatical category to identify possible impacted regions. [TODO, supplementary]
+
+The results found are consistent with the conjectures above: \code{ASN} scores are higher than \code{SIM} in average (Figure \ref{fig:SIM_ASN_Distribution} right), most of voxels respond better to \code{ASN} models (Figure \ref{fig:EMB_SIM_ASN_ContrastMapG}). As the Wilcoxon test shows (W=, \(\Delta\)\code{r2}>0.0068, p-value<0.05 voxel-wise multi-comparison corrected), only two significant clusters are found for \code{SIM} in ... (Table \ref{tab:simasnContrastClusters_sim}) and 17 are found for \code{ASN} (Table \ref{tab:simasnContrastClusters_asn}) in \dots.
+
+The reported clusters for \code{SIM} are composed of 4 to 5 voxels. In our ROI analysis, ROIs larger than 26 voxels are used, thus none of the ROI revealed significance for \code{SIM}. As \code{ASN} has an overall dominance for almost all brain regions, small ROIs located in left m,p STG and large anatomical structures including IParietalLobe and Temporal Lobe all revealed their preference for \code{ASN} model. 
+
+\begin{figure}
+    \centering
+    \makebox[\linewidth]{
+    \includegraphics[width=\paperwidth]{Figures/SIG_ASN_ROI.pdf}
+    }
+    \caption[\code{SIG} \code{ASN} ROI Contrast, Group]{*: 0.05 uncorrected, ***: 0.05 ROI-wise multi-comparison corrected. Red color for \code{ASN}.\\ The average \code{r2} of voxels in a ROI is computed. We select only ROIs with scores>0.02 in either of \code{SIM} and \code{ASN} models. ROIs are of miminum size of 26 voxels (radius of 7 mm). None of the tested ROI reveals a significant mean difference in preference for \code{SIM}. ROIs in left (m,p)STG, l IParietalLobe, lTemporal Lobe respond better to \code{ASN} model.} 
+    \label{fig:SIG_ASN_ROI}
+\end{figure}
+
+% \subsection{\code{MIX} Nested Model and Contrast}
+% [TODO: contrast MIX with SIM, ASN, SIG]
+
+\section{On Behavioral Control}
+
+The correlation between cross-validation session-wise model performances consistently correlates with participants' comprehension question scores in the end of each validation fMRI recording.
+
+\begin{table}
+    \centering
+    \begin{tabularx}{\textwidth}{L  *{8}{l}}
+    \mc{8}{l}{\tabhead{Correlation of Model Performance with Comprehension Question Scores}} \\
+    \toprule
+    &\mc{2}{c}{\code{SIM}} & \mc{2}{c}{\code{SIG}}& \mc{2}{c}{\code{ASN}} & \mc{2}{c}{\code{MIX}} \\
+    \cmidrule{2-3}\cmidrule{4-5}\cmidrule{6-7}\cmidrule{8-9}
+    & max & mean & max & mean & max & mean & max & mean \\
+    \toprule
+    Pearson's r & -.15 & -.17 & -.16 & -.18 & -.09 & -.12 & -.11 & -.14 \\
+    p & .0466 & .0221 & .0262 & .0173 & .1329 & .0593 & .4296 & .3893\\
+\bottomrule
+    
+    \end{tabularx}
+    \caption[Model Performance and Behavioral Question Score Correlation]{}
+    \label{tab:behavioral}
+    \end{table}
+

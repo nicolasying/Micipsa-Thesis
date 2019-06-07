@@ -334,6 +334,23 @@ KOMA-script documentation for details.}]{fancyhdr}
 }
 
 %----------------------------------------------------------------------------------------
+%	ABBREVIATIONS PAGE DESIGN
+%----------------------------------------------------------------------------------------
+
+\newcommand{\roiname}{List of Cortical Region Name Abbreviations}
+\providecaptionname{english,british,american}{\roiname}{List of Cortical Region Name Abbreviations}
+\providecaptionname{ngerman,german,austrian,naustrian}{\abbrevname}{Abk\"urzungsverzeichnis}
+\NewDocumentEnvironment{roiabbrevation}{ m }{%
+	\ifbool{nolistspace}{\begingroup\singlespacing}{}
+	\ifbool{listtoc}{\addchap{\roiname}}{\addchap*{\roiname}}
+	\begin{longtable}{#1}
+	}{%
+	\end{longtable}
+	\addtocounter{table}{-1}% Don't count this table as one of the document tables
+	\ifbool{nolistspace}{\endgroup}{}
+}
+
+%----------------------------------------------------------------------------------------
 %	ABSTRACT PAGE DESIGN
 %----------------------------------------------------------------------------------------
 
@@ -436,9 +453,9 @@ KOMA-script documentation for details.}]{fancyhdr}
 %	DECLARATION PAGE DESIGN
 %----------------------------------------------------------------------------------------
 \newcommand{\contributionname}{Declaration of Contribution}
-\newcommand{\authorshipname}{Declaration of Authorship}
+\newcommand{\authorshipname}{Declaration of Originality}
 
-\providecaptionname{american,australian,british,canadian,english,newzealand,UKenglish,USenglish}{\authorshipname}{Declaration of Authorship} % Declaration of Authorship text for English countries
+\providecaptionname{american,australian,british,canadian,english,newzealand,UKenglish,USenglish}{\authorshipname}{Declaration of Originality} % Declaration of Authorship text for English countries
 \providecaptionname{german,ngerman,austrian,naustrian}{\authorshipname}{Eidesstattliche Erkl\"arung} % Declaration of Authorship text for Germanic countries
 
 \ifbool{consistentlayout}{
