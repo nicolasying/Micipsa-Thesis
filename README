@@ -1,0 +1,25 @@
+This is the repository of 
+========================================================================
+Similarity and Association: 
+Principles of Distributed Semantic Processing in the Human Brain, 
+========================================================================
+a research project conducted within the Cogmaster M2 research internship.
+
+Author: 
+Songsheng Ying, soshyng@gmail.com
+
+Supervisors: 
+Sabine Ploux, Laurent Bonnasse-Gahot, Christophe Pallier.
+
+Compilation passed with XeTex 3.14159265-2.6-0.999991 (Tex Live 2019)
+Biber version: 2.12
+
+--------------------------- File Structure -----------------------------
+/ ------------------------------------------------------ root repository
+main.tex ----------------------------------------------- Main LateX file
+Chapters/ ------------------------------------------------ Body chapters
+Appendices/ -------------------------- Supplementary methods and results
+Figures/ -------------------------------------- Figure plot source files
+Tables/ ----------------------------------------- Table data LaTeX files
+Auxiliary/ --------------------- Declarations, Symboles, Acknowledgement
+zoreto_synced.bib ----------------------- Biber bibliography source file
