@@ -26,20 +26,20 @@ For the comfort of the participants and their concentration on listening compreh
     9 & 26-27 & 11:08 & 336 \\
     \bottomrule
     \end{tabularx}
-    \caption[French \citetitle{desaint-exuperyLittlePrinceFrench2011} Chapter Division]{fMRI TR=2s.}
+    \caption[French \citetitle{desaint-exuperyLittlePrinceFrench2011} Chapter Division]{fMRI TR=2s. Chapter division is consistent with English experiment.}
     \label{tab:lppDivision}
     \end{table}
 
 \subsection{Behavior Control}
 The following section is adapted from \textcite{todorovicAnalysesIRMfLors2018}, section 5.2.2, 5.2.3.
 
-As a behavioral control, 4 multiple-choice listening comprehension questions are posed after each story block. The questions are selected and adapted from the English questions used in the fMRI acquisition experiment developed by Cornell University (``Neural Computational Models of Natural Language'', PI: John Hale and Christophe Pallier). Each question is provided with 4 choices. 
+As a behavioral control, 4 multiple-choice listening comprehension questions are posed after each story block. The questions are selected and adapted from the English questions used in the fMRI acquisition experiment developed by Cornell University within the project framework of ``Neural Computational Models of Natural Language'' (PI: John Hale and Christophe Pallier). Each question is provided with 4 choices. 
 
-To control for the difficulty of the questions and to ensure that participants must have firstly attentively listened to the story to successfully respond to the question, the same questions are distributed and tested to French native speakers without a priori exposure to \citetitle{saint-exuperyPetitPrince1943} in the last 5 years via Information Relay in Cognitive Sciences\footnote{Relais d'information en sciences de la cognition, \url{https://www.risc.cnrs.fr/}.}. The collected responses are used as a control group to test if the fMRI participants respond significantly better.
+To control for the difficulty of the questions and to ensure that participants must have firstly attentively listened to the story to successfully respond to the question, the same questions are distributed and tested to French native speakers without a priori exposure to \citetitle{desaint-exuperyPetitPrince1943} in the last 5 years via Information Relay in Cognitive Sciences\footnote{Relais d'information en sciences de la cognition, \url{https://www.risc.cnrs.fr/}.}. The collected responses are used as a control group to test if the fMRI participants respond significantly better.
 
 Additional open comprehension questions are asked to engage the participants into short conversations during the fMRI recording. The questions are asked orally, with a visual aide of a sampled drawing from the currently-played block chapters. If the participants corrected answers three comprehension questions, they are asked to retell the passage concerning the presented image. 
 
-All questions are available in the annex of \textcite{todorovicAnalysesIRMfLors2018}.
+All questions and the collected scores are available in the annex of \textcite{todorovicAnalysesIRMfLors2018}.
 
 \section{fMRI Acquisition}
 \label{appsec:fmriacquisition} % For referencing this appendix elsewhere, use \ref{AppendixA}
@@ -48,7 +48,7 @@ All questions are available in the annex of \textcite{todorovicAnalysesIRMfLors2
 The following section is translated from \textcite{todorovicAnalysesIRMfLors2018}, section 5.1.
 \subsubsection{Subjects}
 
-Continuing from Section \ref{sec:fmriAcquAndPrepro}, the recruited subjects have not exposed to the story of \citetitle{saint-exuperyPetitPrince1943} for at least 5 years, including books, audiobooks and films. They should not have a clear memory of the story. 
+Continuing from Section \ref{sec:fmriAcquAndPrepro}, the recruited subjects have not exposed to the story of \citetitle{desaint-exuperyPetitPrince1943} for at least 5 years, including books, audiobooks and films. They should not have a clear memory of the story. 
 \subsubsection{Experiment Procedure}
 A Siemens MRI scanner at 3 Tesla acquires fMRI images when the participants passively listen to a narration. Each fMRI recording session lasts at most 90 minutes for security considerations, so the 9 blocks of story is recorded in two sessions within the same day, with a 60 - 90 minutes break between. One session consists of 4 or 5 blocks. 
 
@@ -65,24 +65,30 @@ At the end of the story, an additional five-minute fMRI acquisition was performe
 The tested \(\alpha\) values are 0, \(10^n\) for n in 0, 0.6, 1.2, 1.8, 2.4, 2.5, 2.58, 2.66, 2.74, 2.82, 2.89, 2.97, 3.05, 3.13, 3.21, 3.29, 3.37, 3.44, 3.53, 3.61, 3.68, 3.76, 3.84, 3.92, 4, 4.01, 4.5, 5, 5.50, 5.99, 6, 7, 8.
 
 The tested feature dimensionalities are  1 (\code{RMS}),   2 (\code{WRATE}),   3 (\code{CWRATE}),   4 (begin of embedding features),   6,   8,  10,  12,  14,  16,  18,  20,  22,
-        24,  25,  35,  45,  55,  65,  75,  85,  95, 103 (end of \code{SIM} ), 105,  115, 125, 135,
-       145, 155, 165, 175, 185, 195, 203.
+        24,  25,  35,  45,  55,  65,  75,  85,  95, 103 (last feature of \code{SIM}), 105,  115, 125, 135,
+       145, 155, 165, 175, 185, 195, 203 (last feature of \code{SIG}\slash\code{ASN}\slash\code{MIX}).
 
 
 
 \section{Supplementary Analysis}
 \subsection{Non-nested Model Comparison} 
 \label{appsubsec:nonnestedcompmeth}
-Following the original pipeline proposed in \cite{merkleTestingNonnestedStructural2016}, non-nested model comparison should first test for non-equivalence, then for distinguishability, then compare model performance. 
+Following the original pipeline proposed in \textcite{merkleTestingNonnestedStructural2016}, non-nested model comparison should first test for non-equivalence, then for distinguishability, then compare model performance. 
 
-The particular case for \code{SIM} and \code{ASN} model comparison partially validate the non-equivalence, since the regressor bases are constructed by linear de-correlation, of which the objective is to maximize the found co-linearity between \code{SIM} and \code{MIX} spaces, thus minimize that between \code{SIM} and \code{ASN}.
+In the particular case for \code{SIM} and \code{ASN} model comparison, the non-equivalence is partially validated, since the regressor bases are constructed by linear de-correlation, of which the objective is to maximize the found co-linearity between \code{SIM} and \code{MIX} spaces, thus minimize that between \code{SIM} and \code{ASN}.
 
-Despite the non-equivalence of semantic models, co-linearity could be introduced in the regressor building stage, where a convolution is introduced. For the distinguishability, we proceed by using the constructed regressors. We try to test the distinguishability in this particular sample of two semantic representation spaces (against the fMRI stimuli's text data, with application of a convolution filter), by performing linear regressions between the two design matrices (as a collection of regressors). 
+Despite the non-equivalence of semantic models, numerical co-linearity could be introduced in the regressor building stage where a convolution is introduced. For the distinguishability, we examine the constructed regressors. We try to test the distinguishability in this particular sample of two semantic representation spaces (against the fMRI stimuli's text data, with application of a convolution filter), by performing linear regressions between the two design matrices (as a collection of regressors). 
 
 To simplify the conceptual construction, we proceed similarly with fMRI encoding: from the 9 design matrices of one semantic space, we iteratively leave out one as validation data, the other 8 being training data. We use training data to learn a GLM mapping between different semantic embeddings. Then we test the generalization performance of the predicted model on the validation data. 
 
 The comparison is two-fold: the first using \code{SIM} to predict \code{ASN}, the second in the opposite direction.
+
+
 \subsection{Comprehensive ROI List}
 \label{appsubsc:roilist}
 
 The collected ROI peaks from literatures are available at \url{http://bit.ly/micipsa_roi_list}.
+
+A short resume for different lobe's involvement in semantic tasks is available in Table \ref{tab:distributedareastudysynthesis}.
+
+\input{Tables/distributedResume}

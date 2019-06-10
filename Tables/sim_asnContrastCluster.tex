@@ -10,6 +10,7 @@
 
     Frontal Sup L  &  10  &  -  &  -27  &  59  &  25  &  4  &   .0073  &  6.75  &  1 \\
     Cingulum Ant L  &  32  &  -  &  -8  &  34  &  25  &  5  &   .0069  &  6.15  &  2 \\
+    \midrule
     Temporal Sup L  &  22  &  -  &  -55  &  -1  &  -7  &  3  &   .0062  &  5.35  &  3 \\
     Frontal Mid L  &  10  &  -  &  -36  &  49  &  15  &  4  &   .0061  &  5.29  &  4 \\
     Cingulum Ant L  &  32  &  -  &  -2  &  30  &  31  &  2   &   .0061  &  5.24  &  5 \\
@@ -32,10 +33,9 @@
     \begin{tablenotes}
     \footnotesize
     \item[] Voxel-wise Bonferroni corrected p=0.05 corresponds to uncorrected \(-\log_{10}\) p=6.04.
-
 \end{tablenotes}  
 \end{ThreePartTable}
-\caption[\code{SIM-ASN} Voxel Contrast, \code{SIM}, Group]{The \code{SIM}-\code{ASN} contrast is computed by subtracting group-average voxel-wise \code{r2}. The significance is reported by two-tailed Wilcoxon signed-rank test before multi-comparison correction. The cluster is reported only if the average \code{r2} of \code{SIM} is higher than \code{ASN}. No cluster-size limit was used when computing connected clusters. Significant small clusters are found in left superior frontal cortex and anterior cingular cortex. Additional near-significant clusters are located in left superior temporal gyrus. No ventroanteriotemporal cluster is found for \code{SIM}. \label{tab:simasnContrastClusters_sim}}
+\caption[\code{SIM-ASN} Voxel Contrast, \code{SIM}, Group]{The \code{SIM}-\code{ASN} contrast is computed by subtracting group-average voxel-wise \code{r2}. The significance is reported by two-tailed Wilcoxon signed-rank test before multi-comparison correction. The cluster is reported only if the average \code{r2} of \code{SIM} is higher than \code{ASN}. No cluster-size limit was applied when computing connected clusters. Significant small clusters are found in left superior frontal cortex and anterior cingulate cortex. Additional near-significant clusters are located in left superior temporal gyrus. No ventroanteriotemporal cluster is found for \code{SIM}. \label{tab:simasnContrastClusters_sim}}
 \end{table}
 
 \begin{table}
@@ -49,15 +49,15 @@
     \tabhead{Position} & \tabhead{BA} & \tabhead{Functional Label} & \tabhead{x} & \tabhead{y} & \tabhead{z} & \tabhead{\# Voxel} & \(\Delta\)\code{r2} \tabhead{Peak} & \(-\log_{10}\)\tabhead{ p-value} & \tabhead{Cluster ID} \\
     \toprule
 Cuneus R & 18 & VisualAssoc & 5 & -77 & 22 & 3 & .0083 & 9.99 & 1 \\
-Cuneus L & 18 & VisualAssoc & 2 & -87 & 25 &  &  .0083 & 8.27 & 1a \\
+Cuneus L & 18 & VisualAssoc & 2 & -87 & 25 &  &  .0083 & 8.27 & 1a\tnote{*} \\
 Calcarine L & 18 & VisualAssoc & 2 & -83 & 15 &  &  .0070 & 6.30 & 1b \\
 Temporal Inf R & 20 & - & 46 & -17 & -26 & 2 &  .0090 & 9.21 & 2 \\
-Cerebelum 6 L & 18 & VisualAssoc & -8 & -80 & -13 & 4 &  .0087 & 8.78 & 3 \\
+Cerebellum 6 L & 18 & VisualAssoc & -8 & -80 & -13 & 4 &  .0087 & 8.78 & 3 \\
 Parietal Sup L & 7 & - & -27 & -71 & 56 & 2 &  .0086 & 8.70 & 4 \\
 Occipital Mid R & 18 & VisualAssoc & 36 & -80 & 3 & 2 &  .0078 & 7.70  & 5 \\
-Cerebelum 8 L & 37 & Fusiform & -21 & -55 & -45 & 3 &  .0078  & 7.67 & 6 \\
+Cerebellum 8 L & 37 & Fusiform & -21 & -55 & -45 & 3 &  .0078  & 7.67 & 6 \\
 Occipital Mid L & 19 & - & -30 & -77 & 15 & 2 &  .0076 & 7.29  & 7 \\
-Cerebelum Crus1 L & 18 & VisualAssoc & -2 & -80 & -16 & 2 &  .0075 & 7.16  & 8 \\
+Cerebellum Crus1 L & 18 & VisualAssoc & -2 & -80 & -16 & 2 &  .0075 & 7.16  & 8 \\
 Fusiform R & 18 & VisualAssoc & 30 & -83 & -4 & 3 &  .0073  & 6.85  & 9 \\
 Hippocampus R & 50 & Thalamus & 17 & -11 & -7 & 2 &  .0072 & 6.69 & 10 \\
 Vermis 10 & 37 & Fusiform & -2 & -42 & -32 & 2 &  .0072 & 6.65 & 11 \\
@@ -67,15 +67,16 @@ Thalamus L & 50 & Thalamus & -2 & -20 & 3 & 2 &  .0070  & 6.36 & 14 \\
 Calcarine L & 18 & VisualAssoc & -27 & -64 & 6 & 3 &  .0069  & 6.24  & 15 \\
 Calcarine R & 17 & PrimVisual & 17 & -83 & 6 & 2 &  .0069  & 6.22 & 16 \\
 Calcarine R & 17 & PrimVisual & 11 & -80 & 9 & 2 &  .0069  & 6.20 & 17 \\
-Cerebelum 6 R & 19 & - & 14 & -64 & -13 & 2 &  .0068 & 6.04  & 18 \\
+Cerebellum 6 R & 19 & - & 14 & -64 & -13 & 2 &  .0068 & 6.04  & 18 \\
+\midrule
 Occipital Mid R & 18 & VisualAssoc & 30 & -93 & 15 & 2 &  .0068 & 6.02  & 19 \\
 Parietal Inf L & 40 & - & -30 & -39 & 37 & 2 &  .0068 & 6.01 & 20 \\
 Calcarine R & 17 & PrimVisual & 5 & -64 & 15 & 2 &  .0067& 5.94  & 21 \\
 Calcarine L & 17 & PrimVisual & 2 & -87 & 6 & 4 &  .0067 & 5.88 & 22 \\
 Occipital Mid L & 19 & - & -39 & -74 & 6 & 2 &  .0066 & 5.79 & 23 \\
 Calcarine R & 17 & PrimVisual & 11 & -68 & 15 & 2 &  .0066 & 5.79 & 24 \\
-Cerebelum 8 R & 37 & Fusiform & 30 & -64 & -54 & 2 &  .0066 & 5.76 & 25 \\
-Cerebelum 9 L & 37 & Fusiform & -11 & -42 & -32 & 2 &  .0066 & 5.75& 26 \\
+Cerebellum 8 R & 37 & Fusiform & 30 & -64 & -54 & 2 &  .0066 & 5.76 & 25 \\
+Cerebellum 9 L & 37 & Fusiform & -11 & -42 & -32 & 2 &  .0066 & 5.75& 26 \\
 Calcarine L & 17 & PrimVisual & -8 & -87 & 3 & 2 &  .0065 & 5.66 & 27 \\
 Lingual L & 19 & - & -14 & -45 & -7 & 2 &  .0063 & 5.45 & 28 \\
 Temporal Mid L & 20 & - & -39 & -4 & -26 & 2 &  .0060 & 5.21 & 29 \\
@@ -85,9 +86,10 @@ Calcarine L & 18 & VisualAssoc & -8 & -96 & -13 & 2 &  .0060 & 5.12 & 30 \\
     \begin{tablenotes}
         \footnotesize
         \item[] Voxel-wise Bonferroni corrected p=0.05 corresponds to uncorrected \(-\log_{10}\) p=6.04.
+        \item[*] Sub-peaks in one same cluster. 
     \end{tablenotes}  
 \end{ThreePartTable}
-\caption[\code{SIM-ASN} Voxel Contrast, \code{ASN}, Group]{The \code{SIM}-\code{ASN} contrast is computed by subtracting group-average voxel-wise \code{r2}. The significance is reported by two-tailed Wilcoxon signed-rank test before multi-comparison correction. The cluster is reported only if the average \code{r2} of \code{ASN} is higher than \code{SIM}. No cluster-size limit was used when computing connected clusters. \code{ASN}'s model advantage over \code{SIM} is often found in bilateral visual association and primary visual areas. Clusters in ventroposterior aspects of temporal lobe is also found in right fusiform, parahippocamal gyri. \label{tab:simasnContrastClusters_asn}}
+\caption[\code{SIM-ASN} Voxel Contrast, \code{ASN}, Group]{The \code{SIM}-\code{ASN} contrast is computed by subtracting group-average voxel-wise \code{r2}. The significance is reported by two-tailed Wilcoxon signed-rank test before multi-comparison correction. The cluster is reported only if the average \code{r2} of \code{ASN} is higher than \code{SIM}. No cluster-size limit was applied when computing connected clusters. \code{ASN}'s model advantage over \code{SIM} is often found in bilateral visual association and primary visual areas. Clusters in ventroposterior aspects of temporal lobe is also found in right fusiform, parahippocamal gyri. \label{tab:simasnContrastClusters_asn}}
 \end{table}
 
 

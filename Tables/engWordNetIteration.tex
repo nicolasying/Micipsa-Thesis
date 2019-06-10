@@ -11,22 +11,22 @@
  \mr{4}{=}{\textbf{S}ynonymy} &\mr{2}{=}{15k}  & \mr{12}{=}{850} & Pearson & .2256 & .2679 & .3627 & .123 \\
  & & & Spearman & .2001 & .2003 & .3403 & .0971 \\
 \cmidrule{2-2} \cmidrule{4-8}
-  & \mr{2}{=}{60k} &  & Pearson & .234 & .2112 & .3394 & .1449 \\
+  & \mr{2}{=}{60k} &  & Pearson & .2340 & .2112 & .3394 & .1449 \\
  & & & Spearman & .1747 & .1895 & .2629 & .1129 \\
  \cmidrule{1-2} \cmidrule{4-8}
  \mr{2}{=}{S+Antonymy} & \mr{6}{=}{15k} &  & Pearson & .1534 & .2743 & .373 & .0969 \\
  & & & Spearman & .1255 & .1922 & .3302 & .0817 \\
  \cmidrule{1-1} \cmidrule{4-8}
- \mr{2}{=}{S+\textbf{H}yp\textbf{e}r/\textbf{H}yp\textbf{o}nymy} &  &  & Pearson & .3904 & .4825 & .6187 & .0373 \\
+ \mr{2}{=}{S+ \textbf{H}yp\textbf{e}r/\textbf{H}yp\textbf{o}nymy} &  &  & Pearson & .3904 & .4825 & .6187 & .0373 \\
  & & & Spearman & .4018 & .3856 & .5145 & .0259 \\
  \cmidrule{1-1} \cmidrule{4-8}
- \mr{6}{=}{SHeHo+ adj.participle\_of\_verb+ adj.similar+ adv.derive\_from\_adj} &  &  & Pearson & .5079 & .5333 & .6784 & .0525 \\
+ \mr{6}{=}{SHeHo+ adj.part.\_of\_verb+ adj.similar+ adv.derive\_adj} &  &  & Pearson & .5079 & .5333 & .6784 & .0525 \\
  & & & Spearman & .4986 & .4214 & .576 & .0272 \\
  \cmidrule{2-2} \cmidrule{4-8}
   & \mr{2}{=}{60k} &  & Pearson & .5268 & .5483 & .6991 & .1092 \\
  & & & Spearman & .5152 & .4757 & .5501 & .0515 \\
  \cmidrule{2-8}
-  & \mr{2}{=}{15k\tnote{0}}  & \mr{2}{=}{511} & Pearson & .506 & & & .0279 \\
+  & \mr{2}{=}{15k\tnote{0}}  & \mr{2}{=}{511} & Pearson & .5060 & & & .0279 \\
  & & & Spearman & .4989 & & & .0193 \\
  \cmidrule{2-8} 
 
@@ -54,7 +54,7 @@
     \item[5] The synonym database contains multi-word phrases, whereas task benchmarks only test for single-word pairs. The actual lexicon size of the database is 36718.
 \end{tablenotes}
 \end{ThreePartTable}
-\caption[English \code{WordNetEmbedding} Iterations]{Placeholder \label{apptab:engWordNetIteration}}
+\caption[English \code{WordNetEmbedding} Iterations]{With only synonymy and antonymy, the \similarity scores are weak compared to baseline, and \association information is strongly present. A significant performance boost is achieved when hypernymy and hyponymy are added to the embedding. We suppose hypernymy and hyponymy links all the words available in the ontology through hierarchical organization. The counterpart without these two relations place words more randomly in the space. Another performance boost is achieved when richer information for adjectives and adverbs are added with 15k vocabulary. When models are trained with 60k words, \similarity score is slightly higher but the improvement in \association is more drastic. So we adopted the 15k version in later stages of the project.\label{apptab:engWordNetIteration}}
 \end{table}
 
 % \begin{table}

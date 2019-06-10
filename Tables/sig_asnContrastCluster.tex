@@ -13,6 +13,7 @@
     Angular R & 39 & - & 39 & -55 & 28 & 8 &6.74&.0078& 1 \\
     Precuneus R & 31 & - & 8 & -55 & 41 & 13 &6.41&.0075& 2 \\
     Precuneus R & 23 & - & 8 & -55 & 25 & 4 &6.15&.0073& 3 \\
+    \midrule
     Cingulum Ant L & 32 & - & -2 & 30 & 31 & 14 &5.94&.0072& 4 \\
     Cingulum Ant L & 32 & - & -11 & 34 & 22 &   &4.06&.0054& 4a \\
     Frontal Mid L & 10 & - & -36 & 49 & 15 & 3 &5.69&.0070& 5 \\
@@ -53,12 +54,16 @@
     Parietal Inf R & 40 & - & 43 & -45 & 44 & 2 &3.27&.0046& 39 \\
 \bottomrule
     \end{tabularx}
-    % \begin{tablenotes}
+    \begin{tablenotes}
+            \footnotesize
+            \item Voxel-wise Bonferroni corrected p=0.05 corresponds to uncorrected \(-\log_{10}\) p=6.04.
+            % \item[*] Sub-peaks in one same cluster. 
+        \end{tablenotes}  
     % \footnotesize
-    % \item[1] A cosine distance near 0 indicates a greater similarity.
+    % \item[] A cosine distance near 0 indicates a greater similarity.
 % \end{tablenotes}  
 \end{ThreePartTable}
-\caption[\code{SIG-ASN} Voxel Contrast, \code{SIG}, Group]{[TODO] \label{tab:sigasnContrastClusters_sig}}
+\caption[\code{SIG-ASN} Voxel Contrast, \code{SIG}, Group]{The \code{SIG}-\code{ASN} contrast is computed by subtracting group-average voxel-wise \code{r2}. The significance is reported by two-tailed Wilcoxon signed-rank test before multi-comparison correction. The cluster is reported only if the average \code{r2} of \code{SIG} is higher than \code{ASN}. No cluster-size limit was applied when computing connected clusters. \code{SIG}'s model advantage over \code{ASN} is found in right angular gyrus and right medial parietal cortex. Left aSTG, right pSTG, left pITG, Frontal, limbic, parietal clusters are found significant before correction. \label{tab:sigasnContrastClusters_sig}}
 \end{table}
 
 \begin{table}
@@ -75,14 +80,20 @@ Calcarine L & 17 & PrimVisual & 2 & -87 & 6 & 26 & - & 10.26 & 1 \\
 Calcarine R & 17 & PrimVisual & 5 & -80 & 12 &   & .0095  & 8.30 & 1a \\
 Cingulum Mid R & 32 & - & 17 & 5 & 37 & 2 & .0078 & 6.81  & 2 \\
 Calcarine L & 18 & VisualAssoc & -2 & -99 & 12 & 2 & .0075& 6.27  & 3 \\
+\midrule
 Frontal Inf Orb R & 47 & - & 30 & 27 & -23 & 2 & .0065  & 5.25  & 4 \\
 \bottomrule
     \end{tabularx}
+    \begin{tablenotes}
+        \footnotesize
+        \item Voxel-wise Bonferroni corrected p=0.05 corresponds to uncorrected \(-\log_{10}\) p=6.04.
+        % \item[*] Sub-peaks in one same cluster. 
+    \end{tablenotes}  
     % \begin{tablenotes}
     % \footnotesize
     % \item[1] A cosine distance near 0 indicates a greater similarity.
 % \end{tablenotes}  
 \end{ThreePartTable}
-\caption[\code{SIG-ASN} Voxel Contrast, \code{ASN}, Group]{[TODO] \label{tab:sigasnContrastClusters_asn}}
+\caption[\code{SIG-ASN} Voxel Contrast, \code{ASN}, Group]{The \code{SIG}-\code{ASN} contrast is computed by subtracting group-average voxel-wise \code{r2}. The significance is reported by two-tailed Wilcoxon signed-rank test before multi-comparison correction. The cluster is reported only if the average \code{r2} of \code{ASN} is higher than \code{SIG}. No cluster-size limit was applied when computing connected clusters. \label{tab:sigasnContrastClusters_asn}}
 \end{table}
 

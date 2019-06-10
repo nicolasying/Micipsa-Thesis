@@ -4,23 +4,12 @@
 
 \section{Semantic Embeddings}
 \subsection{Validation on English Data}
-For \code{SIM} space, we used the English \code{WordNetEmbedding} trained on the first 15,000 frequent words and benchmark dataset vocabulary. We kept first 511 PCs by following the method in Section \ref{subsec:semanticsimilaritymethod}, which is comparable to the best dimensionality (850) reported by the original work \parencite{saediWordNetEmbeddings2018} for a \code{WordNetEmbedding} keeping all semantic relations.
+For \code{SIM} space, we used the English \code{WordNetEmbedding} trained on the first 15,000 frequent words and benchmark dataset vocabulary. The first 511 PCs are kept (Section \ref{subsec:semanticsimilaritymethod}), which is comparable to the best dimensionality (850) reported by the original work \parencite{saediWordNetEmbeddings2018} for a \code{WordNetEmbedding} trained with all semantic relations.
 
-The intersection of \code{SIM} space and the Common Crawl vocabulary used in \code{MIX} space resulted to 8157 words. 
+The intersection of \code{SIM} and the Common Crawl vocabulary used in \code{MIX} resulted to 8157 words. The linear regression model mapping \code{SIM} to \code{MIX} produced a \code{r2} score of 0.1662.
 
-The linear regression model mapping \code{SIM} to \code{MIX} produced a \code{r2} score of 0.1662.
+Figure \ref{fig:EngDecorVarRatio} shows the PCA-factored explained variances of the 4 resulting semantic space PCs. After PCA transformation, \emph{Similarity} spaces' explained variance are more concentrated on initial PCs while \association spaces are more homogeneously distributed. The concentration contrast suggests that \association spaces contain richer semantic information, consistent with the low \code{r2} found for the linear projection. In semantic ranking task evaluations (Table \ref{tab:engdecorrelationscores}), conformably to our hypotheses, the untouched \code{MIX} space is indeed a mixture of \similarity and \association information. \code{SIM}, which is constructed with specifically picked semantic relations from \code{WordNet}, is purely \similarity with statistically negligible \association scores. Though we have not completely purged \similarity information from \code{ASN} and \association from \code{SIG}, each resulting semantic space has significantly reduced the score in its irrelevant semantic axis. In addition, a clear dominance of \association semantic signal is present in \code{ASN} and \similarity in \code{SIG}. 
 
-Figure \ref{fig:EngDecorVarRatio} shows the PCA-factored explained variances of the 4 resulting semantic space PCs. Table \ref{tab:engdecorrelationscores} shows the semantic ranking task evaluations. Conformably to our hypotheses, the untouched \code{MIX} space is indeed a mixture of \similarity and \association information. \code{SIM}, which is constructed with specifically picked semantic relations from \code{WordNet}, is purely \similarity with statistically negligible \association scores. Though we have not completely purged \similarity information from \code{ASN} and \association from \code{SIG}, each resulting semantic space has significantly reduced the score in its irrelevant semantic axis. In addition, a clear dominance of \association semantic signal is present in \code{ASN} and \similarity in \code{SIG}. 
-
-
-\begin{figure}
-    \centering
-    \makebox[\linewidth]{
-    \includegraphics[scale=.8]{Figures/EngDecorVarRatio.pdf}
-    }
-    \caption[EVR of 4 Semantic Spaces, English]{PCA of 4 semantic spaces of the English 8157 vocabulary. \textbf{Left panel}: While the variance of \code{SIM} is systematically smaller than other three spaces, its projection (\code{SIG}) has larger variances. The suppression of \code{SIG} from \code{MIX} has little impact on \code{MIX}'s variance. \textbf{Right panel}: \code{SIG} and \code{SIM} have a denser variance concentrated on first PCs, while \code{ASN} and \code{MIX} have more homogeneous variance distributions.} 
-    \label{fig:EngDecorVarRatio}
-\end{figure}
 
 \input{Tables/engSemanticRankingTask}
 
@@ -28,27 +17,18 @@ Figure \ref{fig:EngDecorVarRatio} shows the PCA-factored explained variances of 
 
 Provided with the methodological success of English data, we applied the same algorithm against French data.
 
-For \code{SIM} space, we used the French \code{WOLFEmbedding} with POS tag trained on all the available vocabulary. We kept first 634 PCs.
+For \code{SIM} space, we used the French \code{WOLFEmbedding} with POS tag trained on all the available vocabulary. The first 634 PCs are kept.
 
 After rule-based and manual matching, the intersection of \code{SIM} space and the \code{MIX} space vocabulary resulted to 24519 distinct lemma with POS tags.
 
 The linear regression model mapping \code{SIM} to \code{MIX} produced a \code{r2} score of 0.0776, which is lower than the English score, indicating a smaller informational overlap between the two embedding models.
 
-Figure \ref{fig:FreDecorVarRatio} shows a similar PCA explained variance distribution. Though no sound evidence supporting the validity of the French benchmarks, we tested the resulting semantic spaces using the same tasks against our indicative gold-standard data (Section \ref{subsection:frenchbenchmarkdataconstruction}). The unmodified \code{MIX} space has a much lower score in \similarity and \association compared to the English \code{MIX}, setting a weak baseline for embedding space comparison. Again, \code{SIM} achieves high scores in \similarity, and negligible scores in \association. However, the results (Table \ref{tab:fredecorrelationscores}) puts the validity of \code{ASN} space into question: viewed by Pearson's \code{r} it seems to contain none of \similarity and \association information, judged by Spearman's \code{r}, both axes' information are present in the space. All p-values reported for \code{ASN} are close to the significance threshold. However, \association scores of \code{ASN} are nevertheless higher than \similarity scores. Despite that \code{SIG} represents only a very small portion of variances of the \code{MIX} embedding as indicated by a low \code{r2} score, \code{SIG} has comparable \similarity scores as \code{SIM}, and the purity against \association is even more remarked. 
-
-\begin{figure}
-    \centering
-    \makebox[\linewidth]{
-    \includegraphics[scale=0.8]{Figures/FreDecorVarRatio.pdf}
-    }
-    \caption[EVR of 4 Semantic Spaces, French]{PCA of 4 semantic spaces of the French 24519 vocabulary. \textbf{Left panel}: Due to the poor linear correlation found between \code{SIM} and \code{MIX}, the variance of \code{SIG} is systematically smaller than the other three spaces, the original space \code{SIM} has larger variances. The suppression of \code{SIG} from \code{MIX} has also little impact on the model's variance. \textbf{Right panel}: \code{SIG} has a denser variance concentrated on first PCs, while the other three spaces have more homogeneous variance distributions.\label{fig:FreDecorVarRatio}} 
-    
-\end{figure}
+Figure \ref{fig:FreDecorVarRatio} shows a similar PCA explained variance distribution to English, but the French \code{SIG} seems have a denser concentration of EVR in first PCs than \code{SIM}, which is not the case with English spaces. We tested the resulting semantic spaces using the same tasks against our indicative gold-standard data  (Table \ref{tab:fredecorrelationscores}), without sound evidence supporting the validity of the results. The unmodified \code{MIX} space has a much lower score in \similarity and \association compared to the English \code{MIX}, possibly due to the poor quality of benchmarks, setting a weak baseline for embedding space comparison. 
+Again, \code{SIM} achieves high scores in \emph{similarity}, and negligible scores in \emph{association}. \code{SIG} seems to contain lesser (or purer) information than \code{SIM} by PC examination, which is convergent with the the comparable \similarity scores as \code{SIM} and the more remarked purity against \association tests. However, the Pearson's and Spearman's \code{r} reporting from the tests gave contradicting conclusions on \code{ASN}, which leads us to further examinations of \code{ASN}'s linguistic property. It is worth noting that the \association scores of \code{ASN} are nevertheless higher than \similarity scores. 
 
 \input{Tables/freSemanticRankingTask}
 
-
-To further control the quality of the resulting spaces, particularly that of \code{ASN} due to debatable scores, we visualized the French semantic spaces with an embedding projector\footnote{Published as a TensorFlow component, available at \url{https://projector.tensorflow.org/}. The entries in the embedding space is presented by a sphere positioned in a 3D space, of which the coordinates are by default calculated with the first 3 PCs.} to visualize several exemplar lexicon units and its vectorial neighbors. Based on this analysis (examples in Section \ref{appsubsec:projectorvisu}), we are convinced that French \code{ASN} has a predominant \association preference.
+To clarify on the nature of \code{ASN} due to the found debatable results, we visualized the French \code{ASN} along with other semantic spaces using an embedding projector\footnote{Published as a TensorFlow component, available at \url{https://projector.tensorflow.org/}. The entries in the embedding space is presented by a sphere positioned in a 3D space, of which the coordinates are by default calculated with the first 3 PCs.} to visualize several exemplar lexicon units and its vectorial neighbors. The examples in Section \ref{appsubsec:projectorvisu}) seems to show that French \code{ASN} has a predominant \association preference.
 
 
 \section{Computational Analysis of Ridge Regression}
@@ -56,44 +36,44 @@ To further control the quality of the resulting spaces, particularly that of \co
 \subsection{Regressor Generation}
 
 \subsubsection{Vocabulary Coverage}
-Each word (lemma) in the narrated story used in fMRI experience is associated with its \code{RMS} acoustic feature temporal evolution and its semantic values in different spaces. However some of the content words are not all available in our obtained spaces (Table \ref{tab:lppcoverage} and \ref{apptab:lppcoverage}). When generating regressors, the semantic vectors are set to zero for out-of-vocabulary lemmas. 
+Around 6\% of the content word occurrences and 7\% of the lexicon are not available in our obtained spaces (Table \ref{tab:lppcoverage} and \ref{apptab:lppcoverage}), potentially harming the quality of semantic regressors. 
 
 \input{Tables/lppCoverage}
 
 \subsubsection{Corpus-Targeted Semantic Feature Selection}
 
-The PCA dimension cutting methods presented in Section \ref{subsec:semanticsimilaritymethod} produced 634 feature dimensions for French \code{SIM}. After having generated regressors with word onset timestamps and semantic representation vectors, the average variance cross 9 groups of 103 resulting regressors are computed and visualized in Figure \ref{fig:freSIMRegVar}. We selected the threshold of \(10^{-5}\), which resulted 100 informative regressors for \code{SIM} space\footnote{The selected dimensions are 1 -- 85, 87 -- 94, 96, 97, 99, 100, 103, 117, 131.}.
+After having generated regressors with word onset timestamps and semantic representation vectors, the average variance cross 9 groups of 634 resulting regressors (Section \ref{subsec:semanticsimilaritymethod}) are computed and visualized in Figure \ref{fig:freSIMRegVar}. Since we target less than 200 regressors and the dependency of regressors (due to orthonormalization) is to conserve, we visually selected the threshold of \(10^{-5}\), which resulted 100 informative regressors for \code{SIM} space\footnote{The selected dimensions are 1 -- 85, 87 -- 94, 96, 97, 99, 100, 103, 117, 131.}.
 
 \begin{figure}
     \centering
     \makebox[\linewidth]{
     \includegraphics[scale=1]{Figures/SimDimensionSelectionRegLPP.pdf}
     }
-    \caption[French \code{SIM} Regressor Variances]{The average of 9 fMRI run semantic regressor variances. There are 3 non-embedding regressors, and 634 \code{SIM}-based regressors. \code{RAW} stands for regressor values directly after hemodynamic convolution, \code{ORTHONORMAL} stands for de-linearized regressors after Gram-Schmidt process. \code{THRESHOLD} for regressor selection is fixed at \(10^{-5}\). The \code{RAW} regressors' variance declines dramatically after first few \code{SIM} regressors (dim > 3), and stays relatively stable for later dimensions. This observed trend corresponds well to the eigenvalue evolution of \code{SIM} space (Figures \ref{fig:SimDimensionSeletionVarRatio} and \ref{fig:FreDecorVarRatio}). \code{ORTHONORMAL} regressors's variance declines more slowly, and has a noised plateau around dimension 100 -- 300. Later regressors suffer more significantly in variance (smaller than \(10^{-23}\), approaching the computation precision limit of Python \code{float}s) and retained almost no information for the second half PCs. The threshold is cut around the upper bound of the \code{ORTHONORMAL} variance plateau noise, so a continuous regressor set could be included in the final design matrix without surpassing the dimensionality limit (of 200 which is the dimensionality of the used DepGlove embedding).} 
+    \caption[French \code{SIM} Regressor Variances]{The average of 9 fMRI run semantic regressor variances. There are 3 non-embedding regressors, and 634 \code{SIM}-based regressors. \code{RAW} stands for regressor values directly after hemodynamic convolution, \code{ORTHONORMAL} stands for de-linearized regressors after Gram-Schmidt process. \code{THRESHOLD} for regressor selection is fixed at \(10^{-5}\). The \code{RAW} regressors' variance declines dramatically after first few \code{SIM} regressors (dim > 3), and stays relatively stable for later dimensions. This observed trend corresponds globally well to the eigenvalue evolution of \code{SIM} space (Figure \ref{fig:FreDecorVarRatio}). \code{RAW} curve indeed shows a few dimension's smaller variance compared to Figure \ref{fig:SimDimensionSeletionVarRatio}. \code{ORTHONORMAL} regressors's variance declines more slowly, and has a noised plateau around dimension 100 -- 300. Posterior positioned regressors suffer more significantly in variance (smaller than \(10^{-23}\), approaching the computation precision limit of Python \code{float}s) and retained almost no information for the second half PCs. The regressors are orthonormalized, so removing an anteriorly positioned regressor breaks the information completeness of posterior ones. The threshold is cut around the upper bound of the \code{ORTHONORMAL} variance plateau noise, so a continuous regressor set could be included in the final design matrix without surpassing the dimensionality limit (of 200 which is the dimensionality of the used DepGlove embedding).} 
     \label{fig:freSIMRegVar}
 \end{figure}
 
 
 \subsection{Choice of \(\alpha\) and Effective Feature Dimensionality}
 
+% Our pilot regression experiments partially replicated the original experience \parencite{verdierEncodageActiviteNeuronale2018} with French data on the voxel-model performance spatial-patterns and performance improvement only if we fix the regularization parameter for non-semantic and semantic models (\code{MIX}). The results indicate that fixing one parameter for all models cannot fully exploit the power of the supplied regressors. The fixed \(\alpha\) preferentially improves the regression performance for certain models. 
+
 For each of four semantic models, we generated design matrices for each fMRI session with 103 or 203 features (including 3 non semantic embedding features). 
 
-Analysis in Section \ref{appsubsec:alphadim} suggests that our research space for \(\alpha\) and feature-dimension parameters are complete: the distribution of voxel-configurations are bounded by our search space (see Figure \ref{fig:MIX_HeatmapAlphaDimS1R0} for the \code{MIX} distribution of subject 1 for an example, session-wise distribution plotting for all models are available online [TODO, add url]). 
-
-Section \ref{appsubsec:alphadim} also illustrates the interaction between \(\alpha\) values and voxel regression performances, it confirms that a uniform \(\alpha\) setting penalizes certain cognitive models thus creating an important bias for model selection (see Section \ref{sec:ridgemethod}), supporting our choice of voxel-wise \(\alpha\) configuration.
+Figure \ref{fig:MIX_HeatmapAlphaDimS1R0} plots the best hyper-parameter distribution based on the average \code{r2} score of subject 1, \code{MIX} model. This example, together with session-wise, and other subject-wise visualization of all semantic models\footnote{The visualizations are available online at \url{http://bit.ly/micipsa_heatmaps}.} suggests that our research space for \(\alpha\) and feature-dimension parameters are complete: the distribution of voxel-configurations are bounded by our search space. Section \ref{appsubsec:alphadim} details the analysis. The interaction between \(\alpha\) values and voxel regression performances supports our decision of testing voxel-specific Ridge configuration.
 
 \begin{figure}
 \centering
         \makebox[.5\linewidth]{
             \includegraphics[scale=.8]{Figures/MIX_HeatmapAlphaDimS1R0.pdf}
             }
-            \caption[Subject Best Hyper-parameter Configuration Voxel-Count Heat-map]{After averaging \code{MIX} best \code{r2}s across 9 runs of one same subject, best hyper-parameter configuration appears to be regularly distributed in the search space. A large proportion of voxels are best modeled with no Ridge regularization (especially for voxels using <4 features). Voxel-models requiring for higher-dimensional features are associated with larger \(\alpha\) values. A diagonal trend is found bounding  \(\alpha\). \(\alpha > 10^{4.5} (31989)\) rarely achieves best predictive performances, suggesting that the \(\alpha\) search space is complete for the subject.} 
+            \caption[Subject Best Hyper-parameter Configuration Voxel-Count Heat-map]{After averaging \code{MIX} best \code{r2}s across 9 runs of one same subject, best hyper-parameter configuration appears to be regularly distributed below the diagonal of the visualized search space. A large proportion of voxels are best modeled with no Ridge regularization (especially for voxels using <4 features). Voxel-models requiring for higher-dimensional features are associated with larger \(\alpha\) values. \(\alpha > 10^{4.5} (31989)\) rarely achieves best predictive performances, suggesting that the \(\alpha\) search space is complete for the subject.} 
             \label{fig:MIX_HeatmapAlphaDimS1R0}
 \end{figure}
 
 \section{Cognitive Analysis of fMRI Encoding}
 
-For convenience, the voxel-model predictive performance is considered as voxel activations in response to different feature sets. 
+Only the group-level results and analyses are presented. Subject-wise data are also made available via the links provided in each section.
 
 \subsection{Non Semantic-Embedding Models}
 
@@ -103,7 +83,7 @@ For convenience, the voxel-model predictive performance is considered as voxel a
     \makebox[\linewidth]{
     \includegraphics[width=.8\paperwidth]{Figures/BASE_ContrastMapG.pdf}
     }
-    \caption[Encoding with \code{BASE} Features, Group]{\textbf{Left panels} are plots of voxel-wise \code{r2} scores for three \emph{classes} of non semantic-embedding regressors. With \code{RMS}, \code{WRATE} and \code{CWRATE}, consistent model performances are found for bilateral primary auditive cortices, with a slight preference for left hemisphere (Table \ref{tab:rmsCluters}). \textbf{Right upper and mid panels} are \code{r2} difference maps between two regressor classes. \code{WRATE} does not improve any voxel performance, and \code{CWRATE} improvements are mainly located in bilateral TP, MTG, ITG, frontopolar PFC and cerebellum near Fusiform cortex (Table \ref{tab:cwrateImprovementClusters}). \textbf{Right lower panel} is the F-test contrasting \code{RMS+WRATE+CWRATE} and \code{RMS+WRATE}. 3 levels of significance \code{1, 2, 3} are shown on the whole-brain map, corresponding respectively to p-values of uncorrected 0.05, 0.001 and voxel-wise corrected 0.05. The locations of the significant voxels are reported in Table \ref{tab:Ftest}.} 
+    \caption[Encoding with \code{BASE} Features, Group]{\textbf{Left panels} are plots of voxel-wise \code{r2} scores for three \emph{classes} of non semantic-embedding regressors. With \code{RMS}, \code{WRATE} and \code{CWRATE}, consistent model performances are found for bilateral primary auditive cortices, with a slight preference for left hemisphere (Table \ref{tab:rmsCluters}). \textbf{Right upper panel} is the \code{r2} improvement map of \code{CWRATE} over \code{WRATE}. \code{CWRATE} improvements are mainly located in bilateral TP, ITG, frontopolar PFC and cerebellum near Fusiform gyrus (Table \ref{tab:cwrateImprovementClusters}). \textbf{Right lower panel} is the F-test contrasting \code{RMS+WRATE+CWRATE} and \code{RMS+WRATE}. 3 levels of significance \code{1, 2, 3} are shown on the whole-brain map, corresponding respectively to p-values of uncorrected 0.05, 0.001 and voxel-wise corrected 0.05. Isolated voxels are reported in bilateral mid occipital, lingual BA17/18, right precuneus and cerebellum (Table \ref{tab:Ftest}).} 
     \label{fig:BASE_ContrastMapG}
 \end{figure}
 
@@ -113,7 +93,7 @@ For convenience, the voxel-model predictive performance is considered as voxel a
     \makebox[\linewidth]{
     \includegraphics[width=\textwidth]{Figures/BASE_r2_Distribution.pdf}
     }
-    \caption[Histogram of \code{r2} with \code{BASE} Features]{The voxel scores are averaged over all cross-validations of all subjects. \textbf{Left panel} shows that the addition of \code{WRATE} does not improve any voxel's model performance. \textbf{Mid panel} suggests that \code{CWRATE} slightly overfits a small portion of voxels, the improvement for most voxels are minute. \textbf{Right panel}: However for originally randomly-modeled voxels (x-axis from 0--0.01), \code{CWRATE} does bring significant improvements. The effect of model substitution is not pronounced in group average. However, subject-wise results are significantly higher (up to 0.2) and the score variability and overfitting are more remarkable.} 
+    \caption[Histogram of \code{r2} with \code{BASE} Features]{The voxel scores are averaged over all cross-validations of all subjects. The plotted scores are not substituted even if the model overfits. \textbf{Left panel} shows that the addition of \code{WRATE} does not improve any voxel's model performance. \textbf{Mid panel} suggests that \code{CWRATE} slightly overfits a small portion of voxels, the improvement for most voxels are minute. \textbf{Right panel}: However for originally randomly-modeled voxels (x-axis from 0--0.01), \code{CWRATE} does bring significant improvements. The group average suggests the benefit of adding \code{CWRATE} for a large proportion of voxels, which is not the case for subject results. Subject-wise scores are significantly higher (up to 0.2) and the score variability and overfitting are more remarkable.} 
     \label{fig:histo_base_best_nonsub_G}
 \end{figure}
 
@@ -127,15 +107,13 @@ For convenience, the voxel-model predictive performance is considered as voxel a
 %     \label{fig:RMS99_ClusterG}
 % \end{figure}
 
-\input{Tables/rmsClusters}
-\input{Tables/cwrateImprovementClusters}
+For acoustic features, \code{RMS} preferentially models voxels in bilateral Brodmann Area (BA) 41 (posterior superior temporal gyrus, pSTG), with a slight left lateralization (Figure \ref{fig:BASE_ContrastMapG} upper-left, Table \ref{tab:rmsCluters}). BA41 is part of the primary auditory (PA) cortex, and the left lateralization for speech is consistent with our finding~\parencite{tervaniemiLateralizationAuditorycortexFunctions2003}.
 
-Figure \ref{fig:BASE_ContrastMapG} illustrates the group-wise results for non-semantic-embedding feature classes. Subject-wise results are available online\footnote{\url{http://bit.ly/micipsa_base_wholebrain}}. Additionally, Figure \ref{fig:histo_base_best_nonsub_G} shows the exact impact on addition of \code{WRATE} and \code{CWRATE} \emph{feature groups} to the design matrix, without substituting worse nesting-model results with better nested-model results. Subject-wise results are available online\footnote{\url{http://bit.ly/micipsa_regression_histogram}}, the overfitting with feature additions are more pronounced.
+The addition of \code{WRATE} does not bring any impact (Figure \ref{fig:histo_base_best_nonsub_G} left panel), possibly due to the high co-linearity with \code{RMS} by definition, thus the orthonormalized feature contains only uninformative noises despite a relatively important variance (0.96 after orthonormalization). 
 
-\code{RMS} preferentially models primary auditory cortical activities in Broadmann Area (BA) 41, together with other two clusters located in right mid cingulum and right middle frontal cortex (Table \ref{tab:rmsCluters}). The addition of \code{WRATE} does not bring any impact (Figure \ref{fig:histo_base_best_nonsub_G} left panel), possibly due to the high co-linearity with \code{RMS} by definition, thus the orthonormalized feature contains only uninformative noises despite a relatively important variance (0.96 after orthonormalization, \code{CWRATE} has only 0.10 for reference). With \code{CWRATE}, an extensive range of voxels distributed in the whole brain received better performance (Figure \ref{fig:histo_base_best_nonsub_G} middle panel). 
+In contrast, \code{CWRATE} has only 0.10 variance (in comparison with \code{WRATE}), however, most voxels received better performance when the feature is added (Figure \ref{fig:histo_base_best_nonsub_G} middle panel). These improvements does not change the global voxel ranking. Still being two major voxel-clusters among the best modeled voxels, the bilateral PA clusters show a more pronounced lateralization towards the left hemisphere (Table \ref{tab:rmsCluters}). It suggests that additionally to speech primary auditory processing, left pSTG BA41 is also more implicated in the semantic aspect. 
 
-A left-hemisphere preference for textual listening comprehension is suggested: left primary auditory cortex (BA41) is better modeled than in right hemisphere with \code{RMS} and \code{CWRATE}. On adding \code{CWRATE}, the imbalance between left and right BA41 is enlarged. Table \ref{tab:cwrateImprovementClusters} reports 4 clusters containing more than 16 voxels that are improved (W=136, \(\Delta\)\code{r2}>0.0067, p-value<\(10^{-3.66}\) uncorrected) in left BA37 (MTP), bilateral BA37 (Fusiform Gyrus) and left Rectus. The Wald F-test on \code{CWRATE} contrast reports isolated voxels surviving voxel-wise multi-comparison significance test (Table \ref{tab:Ftest}, p-value<0.05 voxel-wise multi-comparison corrected). The voxels are mainly located in bilateral BA37, left BA18, 19. 
-
+The major improvement of \code{CWRATE} is remarked in left middle and inferior temporal pole (TP) BA38, bilateral posteroinferior temporal gyrus (ITG, including fusiform gyrus FG) BA19/37, frontopolar prefrontal cortex (fpPFC, near rectus gyrus) and posterior cerebellum (Table \ref{tab:cwrateImprovementClusters}, W=136, \(\Delta\)\code{r2}>0.0067, p-value<\(10^{-3.66}\) uncorrected). Isolated voxels are also reported in bilateral mid occipital, lingual BA17/18, right precuneus and cerebellum (Table \ref{tab:Ftest}, p-value<0.05 voxel-wise multi-comparison corrected). The left mid\slash inferior TP is associated to social concepts, the fusiform centroid is located near visual word form area, the precuneus cluster sits near anterior sensorimotor subdivisions. Subject-wise results are available online.\footnote{Whole-brain maps: \url{http://bit.ly/micipsa_base_wholebrain}. Histograms: \url{http://bit.ly/micipsa_regression_histogram}.}.
 
 \subsection{\emph{Similarity} Nested Model}
 
@@ -144,7 +122,7 @@ A left-hemisphere preference for textual listening comprehension is suggested: l
     \makebox[\linewidth]{
     \includegraphics[width=.8\paperwidth]{Figures/SIM_ContrastMapG.pdf}
     }
-    \caption[Encoding with \code{SIM} Features, Group]{\textbf{Left panels}: The global activation pattern is unchanged with the feature addition. Best modeled zones are bilateral primary auditory cortices. \textbf{Right upper panel}  shows that \code{SIM} better models bilateral MTG, sup Parietal, Angular Gyrus (part of Wernicke's area), supramarginal gyrus and prefrontal areas (Table \ref{tab:simImprovementClusters}). F-test in \textbf{right lower panel} reports significant voxels in left pMTG BA21, 39, right pSTG BA22 and left Heschl BA4 (Table \ref{tab:Ftest}). Subject-wise results are available online at \url{http://bit.ly/micipsa_sim_wholebrain}.} 
+    \caption[Encoding with \code{SIM} Features, Group]{\textbf{Left panels}: The global activation pattern is unchanged with the feature addition. Best modeled zones are bilateral primary auditory cortices. \textbf{Right upper panel}  shows that \code{SIM} better models bilateral middle TG (MTG), superior parietal lobule (SPL), angular gyrus (AG) (part of Wernicke's area), supramarginal gyrus (SMG) and prefrontal areas (Table \ref{tab:simImprovementClusters}). F-test in \textbf{right lower panel} reports a few significant voxels in left pMTG BA21, 39, right pSTG BA22 and left Heschl BA4 (Table \ref{tab:Ftest}).} 
     \label{fig:SIM_ContrastMapG}
 \end{figure}
 
@@ -153,17 +131,27 @@ A left-hemisphere preference for textual listening comprehension is suggested: l
     \makebox[\linewidth]{
     \includegraphics[width=.8\paperwidth]{Figures/SIM_ASN_Distribution.pdf}
     }
-    \caption[Histogram of \code{r2} with \code{SIM/ASN} Features]{The group average of semantic embedding models make both important contributions for voxel-modeling (\textbf{left} and \textbf{mid} panels). \textbf{Right} panel shows that \code{ASN} model scores are distributed around a higher average (0.014) than \code{SIM} (0.01). Subject-wise results are available online at \url{http://bit.ly/micipsa_regression_histogram}.} 
+    \caption[Histogram of \code{r2} with \code{SIM/ASN} Features]{The group average of semantic embedding models make both important contributions for voxel-modeling (\textbf{left} and \textbf{mid} panels). \textbf{Right} panel shows that \code{ASN} model scores are distributed around a higher average (0.014) than \code{SIM} (0.01). Again, the subject-wise distributions show very different patterns than the group average: much higher \code{r2} and plenty of overfitted voxels.} 
     \label{fig:SIM_ASN_Distribution}
 \end{figure}
 
-\input{Tables/simImprovementClusters}
 
-We added with upon non semantic-embedding models \code{SIM} freatures to construct \similarity semantic models. While the whole-brain activation pattern stays globally unchanged (Figure \ref{fig:SIM_ContrastMapG} for group-wise average), in \code{SIM} voxel-models, left primary cortex are better ranked than in \code{BASE} model, while right mid cingulum models degrade (Table \ref{tab:rmsCluters}). \code{SIM} enlarges the performance superiority of left STG over right STG, indicating a left preference for textual semantic \similarity processing. The shrinkage of Mid Cingulum's proportion in top 1\% voxel models might imply that it has a limited participating in \similarity processing. The \code{r2} distribution analysis (Figure \ref{fig:SIM_ASN_Distribution} left) shows that in group-average \code{SIM} is informative for most of the voxel-models and none of voxels is overfitted by this addition. Table \ref{tab:simImprovementClusters} reports the most improved voxel clusters by \code{SIM} to be located in bilateral MTG, left Sup Parietal and right Angular Cortex (W=210, \(\Delta\)\code{r2}>0.0079, p<\(10^{-4.35}\) uncorrected). Left MTG improvements are more extensive and more important than right MTG. F-test results shows that \code{SIM} significantly improves isolated voxels (Table \ref{tab:Ftest}, p<0.05 voxel-wise multi-comparison corrected) in left pMTG BA21, 39, right pSTG BA22.
+We added \code{SIM} features upon non semantic-embedding models to trying to locate neural structures participating in semantic \similarity processing. While the whole-brain activation pattern stays globally unchanged (Figure \ref{fig:SIM_ContrastMapG} left, Table \ref{tab:rmsCluters}). \code{SIM} enlarges the performance superiority of left PA over right, suggesting a left preference for textual semantic \similarity processing. The \code{r2} distribution analysis (Figure \ref{fig:SIM_ASN_Distribution} left) shows that in group-average \code{SIM} is informative for most of the voxel-models and none of voxels is overfitted by this addition. The most improved voxel clusters are located in bilateral MTG (left improvement is more extensive, significant and medial), left superior parietal lobule and right angular gyrus (AG) (Table \ref{tab:simImprovementClusters}, W=210, \(\Delta\)\code{r2}>0.0079, p<\(10^{-4.35}\) uncorrected). F-test also reports left pMTG BA21/39, right pSTG BA22 (Table \ref{tab:Ftest}, p<0.05 voxel-wise multi-comparison corrected). The right pSTG locus is located within Wernicke's area. 
+
+Bilateral pMTGs are connected with word-meaning access across modalities and categories of concept~\parencite{visserBothMiddleTemporal2012} and was also proposed as a semantic hub~\parencite{turkenNeuralArchitectureLanguage2011}. AG is argued to be associated with spatial attention, and controversially with metaphor understanding. SPL is linked to language association activations and visuo-motor coordination. \code{SIM} seems also to improve \association structures. Subject-wise results are available online\footnote{Whole-brain maps: \url{http://bit.ly/micipsa_sim_wholebrain}. Histograms: \url{http://bit.ly/micipsa_regression_histogram}.}.
 
 \subsubsection{\emph{Similarity} Nested Model with \code{SIG}}
 
-\code{SIG} contrasts with \code{CWRATE} class models gave similar contrast maps as \code{SIM}: bilateral IFGtri, MTG and ITG, SPG and AG are found. With \code{SIG} the left ITGtri and left ITG improvements are more drastic. A more detailed presentation of \code{SIG} results is available in Section \ref{subsec:sig}.
+\begin{figure}
+    \centering
+    \makebox[\linewidth]{
+        \includegraphics[width=.8\paperwidth]{Figures/SIG_ContrastMapG.pdf}
+        }
+        \caption[Encoding with \code{SIG} Features, Group]{\textbf{Right upper panel} shows that \code{SIG} better models left posteroinferior temporal gyrus (pITG), bilateral inferior frontal pars triangularis (IFGtri), SPL and AG. F-test in \textbf{right lower panel} reports significant voxels in right STG and trends in left STG (Table \ref{tab:Ftest}).} 
+        \label{fig:SIG_ContrastMapG}
+    \end{figure}
+    
+\code{SIG} contrast activates similar voxels as \code{SIM} except in the temporal region. \code{SIG} temporal improvements are found in posterior superior and inferior regions while \code{SIM} is more posterior middle (Figure \ref{fig:SIM_ContrastMapG} upper-right). The SPL position is located near the somatosensory cortex, and the angular cluster is more lateral and caudal. The coordinates are reported in Table \ref{tab:simImprovementClusters} (W=209, \(\Delta\)\code{r2}>0.0079, p-value<\(10^{-4.35}\) uncorrected).  Subject-wise results are available online\footnote{Whole-brain maps: \url{http://bit.ly/micipsa_sig_wholebrain}.}.
 
 \subsection{\emph{Association} Nested Model}
 
@@ -172,33 +160,43 @@ We added with upon non semantic-embedding models \code{SIM} freatures to constru
     \makebox[\linewidth]{
     \includegraphics[width=.8\paperwidth]{Figures/ASN_ContrastMapG.pdf}
     }
-    \caption[Encoding with \code{ASN} Features, Group]{\textbf{Left panels}: Consistent with former results, the addition of \code{ASN} on \code{BASE} regressors does not change the bilateral primary auditive cortices' dominance. Improvements of voxel-models are distributed in an extensive part of all lobes (\textbf{right upper panel}). The most improved voxels are located in bilateral MTG, IFGtri, mid occipital cortex, angular gyrus, sup/mid frontal cortex, mid cingulum  (Table \ref{tab:asnImprovementClusters}). F-test in \textbf{right lower panel} reports significant voxels in right lingual BA19 and mid occipital area BA18 (Table \ref{tab:Ftest}). Subject-wise results are available online at \url{http://bit.ly/micipsa_asn_wholebrain}.} 
+    \caption[Encoding with \code{ASN} Features, Group]{Improvements of voxel-models are distributed in an extensive part of all lobes (\textbf{right upper panel}). The most improved voxels are located in bilateral MTG, IFGtri, left mid occipital gryus, right angular gyrus, left superior medial PFC, mid frontal cortex, mid cingulum (Table \ref{tab:asnImprovementClusters}). F-test in \textbf{right lower panel} reports significant voxels in right lingual BA19 and mid occipital area BA18 (Table \ref{tab:Ftest}).} 
     \label{fig:ASN_ContrastMapG}
 \end{figure}
 
+On adding \code{ASN} features on \code{BASE} features, the bilateral auditive cortices dominance is consistently kept (Figure \ref{fig:ASN_ContrastMapG}, Table \ref{tab:rmsCluters}). \code{ASN} brings voxel-model performance boost in an extensive cortical regions including left pFG, bilateral IFGtri, left MOG/BA39, right AG, left superior mPFC, mid frontal cortex, mid cingulate cortex (Table \ref{tab:asnImprovementClusters}, W=190, \(\Delta\)\code{r2}>0.0065, p-value<\(10^{-4.18}\) uncorrected). F-test results shows that \code{ASN} significantly improves isolated voxels (Table \ref{tab:Ftest}, p-value<0.05 voxel-wise multi-comparison corrected) in right lingual gyrus BA19 and BA18 (visual association). All reported regions are either associated to vision, or visual association, suggesting the modality-specificity of \association is consistent with the \code{ASN} construction.
+Subject-wise results are available online\footnote{Whole-brain map: \url{http://bit.ly/micipsa_asn_wholebrain}.}.
 
-On addding \code{ASN} features on \code{BASE} features, the bilateral auditive cortices dominance is consistently kept (Figure \ref{fig:SIM_ContrastMapG} for group-wise average). The contribution brought by \code{ASN} on top 4 voxel-clusters initially found by \code{RMS} model is similar to \code{SIM} (Table \ref{tab:rmsCluters}): improvement in bilateral Prim Auditory with a slight left preference, shrinkage of right MCingulum and slight improvement of frontopolar PFC. These clusters therefore do not show an observable preference for \code{SIM} and \code{ASN}.
-
-\code{ASN} brings voxel-model performance boost in an extensive cortical regions. The Wilcoxon test shows near-significant performance improvements (W=190, \(\Delta\)\code{r2}>0.0065, p-value<\(10^{-4.18}\) uncorrected) in left BA39 (visual), right angular gyrus (associated with aphasia), right BA21 MTG, left BA37 fusiform gyrus (Table \ref{tab:asnImprovementClusters}). F-test results shows that \code{ASN} significantly improves isolated voxels (Table \ref{tab:Ftest}, p-value<0.05 voxel-wise multi-comparison corrected) in right lingual gyrus BA19 and BA18 (visual association).
  % right BA21 MTG [Senkowski, D., Schneider, T. R., Foxe, J. J., and Engel, A. K. (2008)., multisensory capabilities] Fusiform [within category Trafton, A. "How does our brain know what is a face and what’s not?" MIT News]
+
+
+
 \subsection{\emph{Similarity}/\emph{Association} Contrast}
 
-\subsubsection{With \code{SIM}}
+\subsubsection{\code{ASN} With \code{SIM}}
 
 \begin{figure}
     \centering
+    % \begin{minipage}[t]{\textwidth}
     \makebox[\linewidth]{
     \includegraphics[width=.4\paperwidth]{Figures/EMB_SIM_ASN_r2_ContrastMapG.pdf}
+    % % \includegraphics[width=.4\paperwidth, clip, trim=0cm,0cm,0cm, 1cm]{Figures/EMB_SIM_ASN_ContrastMapG.pdf}
     }
-    \caption[\code{SIM}-\code{ASN} Contrast, Group]{The differences of best voxel-model \code{r2}s are plotted. \code{SIM} preference is found in left BA10 Superior PFC, left anterior cingular cortex, left STS, left medial PFC, right IPL, right STG, MTG (Table \ref{tab:simasnContrastClusters_sim}). \code{ASN} preferences are found in bilateral BA18, right BA20, left BA7, 19, 37 (visual association, primary visual, parahippocampal). Subject-wise results are available online at \url{http://bit.ly/micipsa_sim_asn_contrast}} 
+    % \end{minipage}
+    % \begin{minipage}[t]{\textwidth}
+    \makebox[\linewidth]{
+        \includegraphics[clip, trim=0cm 0cm 0cm 1cm, width=.4\paperwidth]{Figures/EMB_SIM_ASN_ContrastMapG.pdf}
+    }
+    % \end{minipage}
+    \caption[\code{SIM}-\code{ASN} Contrast, Group]{The differences of best voxel-model \code{r2}s are plotted in \textbf{upper panel}, significance levels in \textbf{lower panel}.} 
     \label{fig:EMB_SIM_ASN_ContrastMapG}
 \end{figure}
 
-\input{Tables/sim_asnContrastCluster}
+Following the non-nested model comparison procedure, Section \ref{appsubsec:nonnestedcompres} suggests that first feature dimensions of \code{SIM} design matrices can be partially recovered by \code{ASN} model. Therefore, \code{ASN} might also be able to model voxels using less than 5 features from \code{SIM}, the result might thus underestimate \code{SIM} voxel extents and overestimate \code{ASN} ones. As the first 4 dimensions of \code{SIM} encodes primarily POS information (Section \ref{appsubsec:projectorvisu}), we performed ad-hoc regressions on \code{SIM} space but uses only lemmas from a certain grammatical category to rule out this confound (upcoming). 
 
-Section \ref{appsubsec:nonnestedcompres} suggests that first feature dimensions of \code{SIM} can be partially recovered by \code{ASN} model. Therefore, \code{ASN} might also be able to model voxels using less than 5 features from \code{SIM}, the result might thus lack low-level \code{SIM}/\code{ASN} contrast. As the first 4 dimensions of \code{SIM} encodes primarily POS information (Section \ref{appsubsec:projectorvisu}), we performed ad-hoc regressions on \code{SIM} space but uses only lemmas from a certain grammatical category to identify possible impacted regions (upcoming). 
+Multiple indications on \code{ASN}'s richer semantic information including the explained variance ratio analysis (Figure \ref{fig:FreDecorVarRatio}) and the design matrix correlation analysis are consistent with the regression results: \code{ASN} scores are higher than \code{SIM} in average (Figure \ref{fig:SIM_ASN_Distribution} right), most of cortical areas respond better to \code{ASN} models (Figure \ref{fig:EMB_SIM_ASN_ContrastMapG}). Only two small significant clusters are found for \code{SIM} in left superior frontal cortex BA10 and left anterior cingulum cortex (ACC) (Table \ref{tab:simasnContrastClusters_sim}, W>6945, \(\Delta\)\code{r2}>0.0068, p-value<0.05 voxel-wise multi-comparison corrected). BA10 is suggested to be linked to memory recall and executive functions, and ACC BA32 to error detection and social evaluation. Left aSTG, right pSTG, right pSTS BA22 and left aSTS/mid TP are also reported (p<0.001 uncorrected). 
 
-The found results are consistent with the conjectures above: \code{ASN} scores are higher than \code{SIM} in average (Figure \ref{fig:SIM_ASN_Distribution} right), most of voxels respond better to \code{ASN} models (Figure \ref{fig:EMB_SIM_ASN_ContrastMapG}). As the Wilcoxon test shows (W>6945, \(\Delta\)\code{r2}>0.0068, p-value<0.05 voxel-wise multi-comparison corrected), only two significant clusters are found for \code{SIM} in left superior frontal cortex and left anterior cingulum cortex (both associated with control/decision-related cognitions) (Table \ref{tab:simasnContrastClusters_sim}) and 17 are found for \code{ASN} (Table \ref{tab:simasnContrastClusters_asn}) in bilateral visual association areas (BA18), primary visual areas (BA17), ventroposterior temporal areas (fusiform, hoppocampus and parahippocampus). 
+\code{ASN} found 17 small culsters \code{ASN} (Table \ref{tab:simasnContrastClusters_asn}) in bilateral visual association areas (BA18), primary visual areas (BA17), ventrotemporal areas (ventroinferior ITG, parahippocampal gyrus), left SPL, left thalamus and bilateral cerebellum. The temporal locations are linked to social interactions and sarcasm (parahippocampal) \parencite{rankinDetectingSarcasmParalinguistic2009}. No prior evidence implicates \similarity involvement for other found sites. Subject-wise results are available online\footnote{Whole-brain maps: \url{http://bit.ly/micipsa_sim_asn_contrast}.}.
 
 The reported clusters for \code{SIM} are composed of 4 to 5 voxels. In our ROI analysis, ROIs larger than 26 voxels are used, thus none of the ROI revealed significance for \code{SIM}. As \code{ASN} has an overall dominance for almost all brain regions, small ROIs located in left middle/posterior STG and large anatomical structures including IPL and TL all revealed their preference for \code{ASN} model. 
 
@@ -211,6 +209,11 @@ The reported clusters for \code{SIM} are composed of 4 to 5 voxels. In our ROI a
     \label{fig:SIM_ASN_ROI}
 \end{figure}
 
+
 \subsubsection{With \code{SIG}}
 
-In general \code{SIG} [TODO]
+In general \code{SIG} outperforms \code{SIM}. The model performance contrast indicates a preference for \code{SIG} over \code{ASN} in right angular and precuneus (Figure \ref{fig:EMB_SIG_ASN_ContrastMapG}, Table \ref{tab:sigasnContrastClusters_sig}, \(\Delta\)\code{r2}>0.0073, p-value<0.05 voxel-wise multi-comparison corrected). Temporal sites including bilateral pSTG (PA, BA41) and left aSTG are also reported before correction. Only the left aSTG located in BA22 was recurrent with \code{SIM}-\code{ASN} contrast. The ROI analysis find \code{SIG} preference in bilateral mSTG before correction (Figure \ref{fig:SIG_ASN_ROI}).
+
+Consistent with former contrast with \code{SIM}, \code{ASN} is activated for bilateral calcarine (BA18, 18) in primary and associational visual area. ROIs in left aMTG, left a/mFG, left TPS, right TPL, IFGober, IFGtri and bilateral aTL and TP are found significantly more correlated with \code{ASN} (Table \ref{tab:sigasnContrastClusters_asn}).
+
+The evidences from two contrasts only shares one small left aSTG site. Other reported temporal areas' specificity in two semantic principles do not lead to a consistent conclusion.

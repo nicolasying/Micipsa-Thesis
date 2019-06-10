@@ -49,10 +49,11 @@
     \end{tabularx}
     \begin{tablenotes}
     \footnotesize
-    \item[] Coordinates are reported in Montreal Neurological Institute (MNI) standardized spaces.
+    \item Coordinates are reported in Montreal Neurological Institute (MNI) standardized spaces.
     \item[1] Cluster size smaller than 47 voxels, 1500 \(\text{mm}^3\).
     \item[2] Cluster not found. 
 \end{tablenotes}  
 \end{ThreePartTable}
-\caption[\code{RMS/CWRATE/SIM/SIG/ASN} Best Modeled Voxel Clusters]{Across four regressor classes, the best models voxels are consistently found in four cortical areas: bilateral pSTG (BA41, primary auditory), right Mid Cingulum and right aPFC (BA10). The most severe voxel score selection leads to left primary cortex (BA41) activation. With the addition of semantic features including \code{CWRATE}, \code{SIM} and \code{ASN}, left pSTG cluster grows while right MCingulum shrinks. \code{CWRATE} penalizes voxels in right BA10 and BA41, while semantic regressors re-improves the scores. With \code{ASN}, a significant left pSTG cluster centroid posterior shift is observed. No other contrasting differences are found for \code{SIM} and \code{ASN}.\label{tab:rmsCluters}}
+\caption[\code{RMS/CWRATE/SIM/SIG/ASN} Best Modeled Voxel Clusters]{Across four regressor classes, the best models voxels are consistently found in four cortical areas: bilateral pSTG (BA41, primary auditory), right mid cingulate cortex (MCC) and right aPFC (BA10). The most severe voxel score selection leads to left primary cortex (BA41) activation. With the addition of semantic features including \code{CWRATE}, \code{SIM} and \code{ASN}, left pSTG cluster grows while right MCC shrinks. \code{CWRATE} penalizes voxels in right BA10 and BA41, while semantic regressors re-improves the scores. With \code{ASN}, a significant left pSTG cluster centroid posterior shift is observed. No other contrasting differences are found for \code{SIM} and \code{ASN}.\label{tab:rmsCluters}}
+% The shrinkage of Mid Cingulum's proportion in top 1\% voxel models might imply that it has a limited participating in \similarity processing.
 \end{table}

@@ -1,3 +1,9 @@
+%------------------------Include only----------------------------------------
+% \includeonly{Chapters/Introduction}
+% \includeonly{Auxiliary/contribution} , Chapters/Methods  Appendices/SupplementaryResults
+
+
+
 %---------
 % Thesis requirement: 10k ~ 15k words
 %----------------------------------------------------------------------------------------
@@ -21,11 +27,6 @@ headsepline, % Uncomment to get a line under the header
 table,
 dvipsnames
 ]{MastersDoctoralThesis} % The class file specifying the document structure
-
-
-%------------------------Include only----------------------------------------
-% \includeonly{Chapters/Results}
-% \includeonly{Auxiliary/contribution} , Chapters/Methods  Appendices/SupplementaryResults
 
 
 
@@ -60,7 +61,9 @@ dvipsnames
 % \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
 \newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{A}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcolumntype{P}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
 % \usepackage[utf8]{inputenc} % Required for inputting international characters
 \usepackage[T1]{fontenc} % Output font encoding for international characters
 \usepackage{float}
@@ -118,6 +121,9 @@ dvipsnames
 \hypersetup{pdfkeywords=\keywordnames} % Set the PDF's keywords to your keywords
 }
 
+\AtBeginBibliography{
+	\small
+}
 
 % Define some commands to keep the formatting separated from the content 
 \newcommand{\keyword}[1]{\textbf{#1}}
@@ -168,7 +174,7 @@ dvipsnames
 
 \large \textit{A thesis submitted in fulfillment of the requirements\\ for the degree of }\\
 \large \textit{\degreename}\\[0.5cm] % University requirement text
-\textit{Research project executed in the}\\
+\textit{Research project conducted in the}\\
 \groupname\\\deptname\\[2cm] % Research group name and department name
  
 \vfill
@@ -207,6 +213,7 @@ dvipsnames
 \else
 \fi
 \include{Auxiliary/contribution}
+\include{Auxiliary/acknowledgements}
 
 \addcontentsline{toc}{chapter}{Preregistration}
 \includepdf[pages=-]{Micipsa_Preregistration.pdf}
@@ -230,16 +237,12 @@ dvipsnames
 \else
 % \include{Auxiliary/abstract}
 \fi
-
-% \ifdefined\drafting
-% \else
-% \include{Auxiliary/acknowledgements}
 % \fi
 
-\begingroup
-\let\cleardoublepage\relax
 
 \tableofcontents % Prints the main table of contents
+\begingroup
+\let\cleardoublepage\relax
 \ifdefined\drafting
 \else
 

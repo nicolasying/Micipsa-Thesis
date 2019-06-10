@@ -2,10 +2,10 @@
     \centering
     \begin{ThreePartTable}
         
-    \begin{tabularx}{\textwidth}{RRRRll}
+    \begin{tabularx}{\textwidth}{RRRR *{2}{A{2.3cm}}}
         \multicolumn{6}{l}{\tabhead{English Semantic Space Semantic Ranking Task Results}} \\
     \toprule
-    \tabhead{Semantic Space} & \tabhead{Vocabulary Size} & \tabhead{Dimension} & r & \tabhead{SimLex-999} & \tabhead{WS353-ASN} \\  
+    \tabhead{Semantic Space} & \tabhead{Vocabulary Size} & \tabhead{Dimension} & r & \tabhead{\emph{Similarity} SimLex-999} & \tabhead{\emph{Association} WS353-ASN} \\  
     \midrule
     \mr{2}{*}{\code{SIM}} & \mr{2}{*}{15K} & \mr{2}{*}{511} & Pearson & .5060 & \textbf{.0279}\tnote{1} \\  
     &  &  & Spearman & .4989 & \textbf{.0193}\tnote{2}   \\  
@@ -29,12 +29,12 @@
     \end{tabularx}
     \begin{tablenotes}
         \footnotesize
-        \item Scores marked in bold have a p-value larger than 0.05.
+        \item The tested null hypothesis is a non-existent linear correlation between the model predicted scores and the gold-standard. Scores marked in bold have a p-value larger than 0.05. 
         \item[1] p-value=0.6626
         \item[2] p-value=0.7629
         \item[3] Baseline is reported by \textcite{saediWordNetEmbeddings2018}. The 13k words are selected cue words in psycholinguistic experiments. They show the best performance among all tested models.
     \end{tablenotes}
     \end{ThreePartTable}
     \caption[English Semantic Space Semantic Ranking Task Results]{With a different semantic relation selection, \code{SIM} achieves almost the same performance as the baseline in \similarity benchmark, while it cancels out the 
-    \association score. \code{MIX} space performs well in both task-sets, with a slight preference for \association, consistent with \parencite{lapesaContrastingSyntagmaticParadigmatic2014}'s conclusion. \code{ASN} has comparable scores in \association with \code{MIX}, but still have a non-zero score in \similarity. The projected \code{SIG} space compared with \code{SIM} has similar scores in \similarity and a much lower score in \association.\label{tab:engdecorrelationscores}}
+    \association score. \code{MIX} space performs well in both task-sets, with a slight preference for \association, consistent with \parencite{lapesaContrastingSyntagmaticParadigmatic2014}'s conclusion. \code{ASN} has comparable scores in \association with \code{MIX}, but still have a non-zero score in \emph{similarity}. The projected \code{SIG} space compared with \code{SIM} has similar scores in \similarity and a much lower score in \emph{association}.\label{tab:engdecorrelationscores}}
     \end{table}

@@ -2,10 +2,10 @@
     \centering
     \begin{ThreePartTable}
     
-    \begin{tabularx}{\textwidth}{RRRRll}
+    \begin{tabularx}{\textwidth}{RRRR *{2}{A{2.3cm}}}
         \multicolumn{6}{l}{\tabhead{French Semantic Space Semantic Ranking Task Results}} \\
     \toprule
-    \tabhead{Semantic Space} & \tabhead{Vocabulary Size} & \tabhead{Dimension} & r & \tabhead{SimLex-999} & \tabhead{WS353-ASN} \\  
+    \tabhead{Semantic Space} & \tabhead{Vocabulary Size} & \tabhead{Dimension} & r & \tabhead{\emph{Similarity} SimLex-999} & \tabhead{\emph{Association} WS353-ASN} \\  
     \midrule
     
     \mr{5}{*}{\code{SIM}} & \mr{4}{*}{56665} & \mr{4}{*}{634} & Pearson & .3291 & \textbf{.1039} \\  
@@ -50,10 +50,11 @@
     \end{tabularx}
     \begin{tablenotes}
         \footnotesize
-        \item Scores marked in bold have a p-value larger than 0.05.
+        \item[] The tested null hypothesis is a non-existent linear correlation between the model predicted scores and the gold-standard. Scores marked in bold have a p-value larger than 0.05.
     \end{tablenotes}
     \end{ThreePartTable}
     
-    \caption[French Semantic Space Semantic Ranking Task Results]{The results are consistent with English semantic spaces, despite the poor quality of French benchmark datasets. \code{SIM} has high performance in \similarity and negligible \association scores. The relatively poor de-correlation between \code{SIM} and \code{MIX} resulted a \code{ASN} still containing abundant \similarity information. \code{SIG} however, cancels out completely \association information even compared with \code{SIM} while retained \similarity signals.}
+    \caption[French Semantic Space Semantic Ranking Task Results]{Possibly due to the poor quality of French benchmark datasets, baseline scores with \code{MIX} is much lower than the English counterpart. \code{SIM} has high performance in \similarity and negligible \association scores. The relatively poor de-correlation between \code{SIM} and \code{MIX} resulted a debatable \code{ASN}. Viewed by Pearson's \code{r} it seems to contain none of \similarity and \association information, judged by Spearman's \code{r}, both axes' information are present in the space. All p-values reported for \code{ASN} are close to the significance threshold. Still, \code{ASN} holds higher scores in \association than \similarity. \code{SIG} however, cancels out completely \association information even compared with \code{SIM} while retained \similarity signals.}
+    % the results puts the validity of \code{ASN} space into question:  
     \label{tab:fredecorrelationscores}
     \end{table}
