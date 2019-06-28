@@ -23,3 +23,8 @@ Figures/ -------------------------------------- Figure plot source files
 Tables/ ----------------------------------------- Table data LaTeX files
 Auxiliary/ --------------------- Declarations, Symboles, Acknowledgement
 zoreto_synced.bib ----------------------- Biber bibliography source file
+
+
+-------------------------- Code Referencing ----------------------------
+Search for ''ipynb'' in Chapters/Methods for the code implementation of 
+presented methods in the thesis.
